@@ -28,7 +28,7 @@
         app:layout_constraintTop_toBottomOf="@+id/txtFinal" />
 
     <TextView
-        android:id="@+id/txtPuntiacionNumero"
+        android:id="@+id/txtResultado"
         android:layout_width="57dp"
         android:layout_height="23dp"
         app:layout_constraintEnd_toEndOf="@+id/txtPuntuacion"
