@@ -14,10 +14,11 @@
         android:layout_marginLeft="68dp"
         android:layout_marginBottom="40dp"
         android:drawableStart="@drawable/ic_baseline_loop_24"
+        android:drawableLeft="@drawable/ic_baseline_loop_24"
+        android:onClick="reiniciar"
         android:text="@string/stringReiniciar"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:drawableLeft="@drawable/ic_baseline_loop_24" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/txtNumeroPregunta"
@@ -54,10 +55,11 @@
         android:layout_marginRight="68dp"
         android:layout_marginBottom="40dp"
         android:drawableStart="@drawable/ic_baseline_navigate_next_24"
+        android:drawableLeft="@drawable/ic_baseline_navigate_next_24"
+        android:onClick="acabar"
         android:text="@string/stringSiguiente"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:drawableLeft="@drawable/ic_baseline_navigate_next_24" />
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <ListView
         android:id="@+id/listViewPreguntas"
