@@ -2,4 +2,8 @@
     <string name="app_name">Quiz de Historia Universal</string>
     <string name="stringReiniciar">Reiniciar</string>
     <string name="stringSiguiente">Siguiente</string>
+    <string name="stringFinal">El test ha acabado</string>
+    <string name="radioCompartir">Comparte tu resultado</string>
+    <string name="radioReiniciar">Volver a jugar</string>
+    <string name="radioSalir">Salir</string>
 </resources>
