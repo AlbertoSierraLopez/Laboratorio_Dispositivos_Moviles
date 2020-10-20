@@ -6,4 +6,6 @@
     <string name="radioCompartir">Comparte tu resultado</string>
     <string name="radioReiniciar">Volver a jugar</string>
     <string name="radioSalir">Salir</string>
+    <string name="placeholder_Pregunta">¿Sabías que esta pregunta es un placeholder?</string>
+    <string name="placeholder_NumeroPregunta">Pregunta 0</string>
 </resources>

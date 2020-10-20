@@ -43,6 +43,10 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         siguiente = (Button) findViewById(R.id.btnReiniciar);
         listViewRespuestas = (ListView) findViewById(R.id.listViewRespuestas);
 
+        cicloDeJuego();
+    }
+
+    public void cicloDeJuego() {
         // Mostrar pregunta
         numeroPregunta.setText("Pregunta " + (contadorPreguntas + 1));
         pregunta.setText(libreria.getPregunta(contadorPreguntas));
@@ -65,14 +69,22 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 //        String respuesta = listaRespuestas.get(position);
         if (position == libreria.getSolucion(contadorPreguntas)) {
             Toast.makeText(this, "La respuesta es correcta", Toast.LENGTH_LONG).show();
+            puntuacion += 3;
         } else {
             Toast.makeText(this, "La respuesta es incorrecta", Toast.LENGTH_LONG).show();
+            puntuacion -= 2;
         }
+
     }
 
     public void reiniciar(View view) {
         Intent reiniciar = new Intent(this, MainActivity.class);
         startActivity(reiniciar);
+    }
+
+    public void continuar(View view) {
+        contadorPreguntas++;
+        cicloDeJuego();
     }
 
     /* METODO PARA DEBUG */
