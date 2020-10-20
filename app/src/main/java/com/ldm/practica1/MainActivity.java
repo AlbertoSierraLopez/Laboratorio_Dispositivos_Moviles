@@ -62,6 +62,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         ArrayAdapter adaptadorListaRespuestas = new ArrayAdapter(this, android.R.layout.simple_list_item_1, listaRespuestas);
         listViewRespuestas.setAdapter(adaptadorListaRespuestas);
         listViewRespuestas.setOnItemClickListener(this);
+        listViewRespuestas.setEnabled(true);    // Esto activa de nuevo el listView en caso de que hubiese sido desactivado
     }
 
     @Override
@@ -74,7 +75,8 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             Toast.makeText(this, "La respuesta es incorrecta", Toast.LENGTH_LONG).show();
             puntuacion -= 2;
         }
-
+        // Solo se puede responder una vez
+        listViewRespuestas.setEnabled(false);   // Desactiva el listView para no responder múltiples veces a la misma pregunta y ganar puntos extra
     }
 
     public void reiniciar(View view) {
@@ -83,6 +85,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     }
 
     public void continuar(View view) {
+        // El juego permite saltar preguntas sin responder
         contadorPreguntas++;
         cicloDeJuego();
     }
