@@ -51,21 +51,24 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:drawableRight="@drawable/ic_baseline_share_24"
-            android:text="@string/radioCompartir" />
+            android:text="@string/radioCompartir"
+            android:drawableEnd="@drawable/ic_baseline_share_24" />
 
         <RadioButton
             android:id="@+id/radioReiniciar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:drawableRight="@drawable/ic_baseline_loop_24"
-            android:text="@string/radioReiniciar" />
+            android:text="@string/radioReiniciar"
+            android:drawableEnd="@drawable/ic_baseline_loop_24" />
 
         <RadioButton
             android:id="@+id/radioSalir"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:drawableRight="@drawable/ic_baseline_exit_to_app_24"
-            android:text="@string/radioSalir" />
+            android:text="@string/radioSalir"
+            android:drawableEnd="@drawable/ic_baseline_exit_to_app_24" />
     </RadioGroup>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
