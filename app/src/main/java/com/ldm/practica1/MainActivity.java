@@ -92,7 +92,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             cicloDeJuego();
         } else {                                // Si se han respondido todas las preguntas, se lanza la pantalla resumen final
             Intent acabar = new Intent(this, ResultadosActivity.class);
-            // Además de llamar a la activity hay que pasarle el dato de la puntuación
+            // Además de llamar a la activity hay que pasarle el dato de la puntuación para que lo pueda mostrar allí
             acabar.putExtra("puntuacionFinal", puntuacion);
             startActivity(acabar);
         }

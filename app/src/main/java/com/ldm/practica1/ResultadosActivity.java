@@ -27,8 +27,9 @@ public class ResultadosActivity extends AppCompatActivity {
         // Conectar la parte lógica con el diseño
         resultado = (TextView) findViewById(R.id.txtResultado);
 
-        // Mostrar resultado final
+        // Recoge la puntuación final de la otra activity
         int puntuacion = getIntent().getIntExtra("puntuacionFinal", 0);
+        // Mostrar resultado final
         resultado.setText(Integer.toString(puntuacion));
     }
 
