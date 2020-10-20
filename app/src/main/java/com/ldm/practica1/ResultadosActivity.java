@@ -14,7 +14,7 @@ import android.widget.TextView;
 public class ResultadosActivity extends AppCompatActivity {
     private TextView txtFinal;
     private TextView puntuacion;
-    private TextView puntuacionNumero;
+    private TextView resultado;
     private CheckBox compartir;
     private CheckBox reiniciar;
     private CheckBox salir;
@@ -23,6 +23,13 @@ public class ResultadosActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_resultados);
+
+        // Conectar la parte lógica con el diseño
+        resultado = (TextView) findViewById(R.id.txtResultado);
+
+        // Mostrar resultado final
+        int puntuacion = getIntent().getIntExtra("puntuacionFinal", 0);
+        resultado.setText(Integer.toString(puntuacion));
     }
 
     public void reiniciar(View v) {

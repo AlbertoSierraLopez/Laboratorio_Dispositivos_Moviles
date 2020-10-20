@@ -18,6 +18,7 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
     // Declaración de variables
     private final int NPREGUNTAS = 5;
+
     private TextView numeroPregunta;
     private TextView pregunta;
     private Button reiniciar;
@@ -86,8 +87,15 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
     public void continuar(View view) {
         // El juego permite saltar preguntas sin responder
-        contadorPreguntas++;
-        cicloDeJuego();
+        contadorPreguntas++;    // "Al final de la pregunta el contador de preguntas señal el número real de la pregunta que se ha respondido (1-5)"
+        if (contadorPreguntas < NPREGUNTAS) {   // Si aun quedan preguntas se lanza el ciclo de juego
+            cicloDeJuego();
+        } else {                                // Si se han respondido todas las preguntas, se lanza la pantalla resumen final
+            Intent acabar = new Intent(this, ResultadosActivity.class);
+            // Además de llamar a la activity hay que pasarle el dato de la puntuación
+            acabar.putExtra("puntuacionFinal", puntuacion);
+            startActivity(acabar);
+        }
     }
 
     /* METODO PARA DEBUG */
