@@ -11,14 +11,9 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity {
     private TextView numeroPregunta;
     private TextView pregunta;
-    private Button respuesta1;
-    private Button respuesta2;
-    private Button respuesta3;
-    private Button respuesta4;
     private Button reiniciar;
     private Button siguiente;
 
-    private String respuestaCorrecta;
     private int contadorPreguntas = 1;
     private int puntuacion = 0;
 
