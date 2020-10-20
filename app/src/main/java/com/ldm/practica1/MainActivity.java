@@ -43,6 +43,10 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         siguiente = (Button) findViewById(R.id.btnReiniciar);
         listViewRespuestas = (ListView) findViewById(R.id.listViewRespuestas);
 
+        // Mostrar pregunta
+        numeroPregunta.setText("Pregunta " + (contadorPreguntas + 1));
+        pregunta.setText(libreria.getPregunta(contadorPreguntas));
+
         // Cargar la lista de respuestas
         listaRespuestas = new ArrayList<>();
         listaRespuestas.add(libreria.getRespuesta0(contadorPreguntas));
