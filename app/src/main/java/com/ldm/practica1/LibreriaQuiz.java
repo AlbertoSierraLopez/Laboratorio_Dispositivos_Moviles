@@ -16,9 +16,9 @@ public class LibreriaQuiz {
     private String[] preguntas = {
             "¿Qué emperador romano legalizó el cristianismo y puso fin a la persecución de los cristianos?",
             "¿Quién fue el primer presidente de los Estados Unidos?",
-            "¿En qué batalla fue finalmente derrotado Napoleón Bonaparte?",
             "¿A qué filósofo griego se le atribuye la obra \"La República\"?",
-            "¿Quién fue el primer humano en viajar al espacio?"
+            "¿Quién fue el primer humano en viajar al espacio?",
+            "¿En qué batalla fue finalmente derrotado Napoleón Bonaparte?"
     };
 
     private String[][] respuestas = {
