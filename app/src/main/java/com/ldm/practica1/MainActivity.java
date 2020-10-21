@@ -3,6 +3,7 @@ package com.ldm.practica1;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -76,6 +77,15 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             Toast.makeText(this, "La respuesta es incorrecta", Toast.LENGTH_LONG).show();
             puntuacion -= 2;
         }
+        // Cambiar los colores de las respuestas para revelar la correcta
+        for (int i = 0; i < listViewRespuestas.getChildCount(); i++) {
+            if (i == libreria.getSolucion(contadorPreguntas)) {
+                listViewRespuestas.getChildAt(i).setBackgroundColor(Color.GREEN);
+            } else {
+                listViewRespuestas.getChildAt(i).setBackgroundColor(Color.RED);
+            }
+        }
+
         // Solo se puede responder una vez
         listViewRespuestas.setEnabled(false);   // Desactiva el listView para no responder múltiples veces a la misma pregunta y ganar puntos extra
     }
