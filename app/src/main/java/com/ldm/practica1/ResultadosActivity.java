@@ -39,11 +39,7 @@ public class ResultadosActivity extends AppCompatActivity {
     }
 
     public void terminar(View v) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            this.finishAndRemoveTask();
-        } else {
-            this.finish();
-        }
+        ResultadosActivity.this.finish();
         System.exit(0);
     }
 
