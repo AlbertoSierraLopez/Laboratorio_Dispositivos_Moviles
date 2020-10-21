@@ -2,7 +2,7 @@ package com.ldm.practica1;
 
 public class LibreriaQuiz {
 
-    String datosQuiz[][] = {
+/*    String datosQuiz[][] = {
             {"¿Qué líder tribal luchó contra la ocupación romana de Britania?", "Boudica", "Tácito", "Ariovistus", "Prasutagus"},
             {"¿Qué emperador romano legalizó el cristianismo y puso fin a la persecución de los cristianos?", "Constantino", "Adriano", "Trajano", "Nerón"},
             {"¿Quién fue el primer presidente de los Estados Unidos?", "George Washington", "Thomas Jefferson", "Abraham Lincoln", "Andrew Jackson"},
@@ -11,7 +11,7 @@ public class LibreriaQuiz {
             {"¿Qué científico es considerado el padre de la bomba atómica?", "Robert Oppenheimer", "Albert Einstein", "Jonas Salk", "Leó Szilárd"},
             {"¿Quién fue el primer humano en viajar al espacio?", "Yuri Gagarin", "Neil Armstrong", "Buzz Aldrin", "Adriyan Nikolayev"}
     };
-
+*/
 
     private String[] preguntas = {
             "¿Qué emperador romano legalizó el cristianismo y puso fin a la persecución de los cristianos?",
@@ -24,17 +24,17 @@ public class LibreriaQuiz {
     private String[][] respuestas = {
             {"Constantino", "Adriano", "Trajano", "Nerón"},
             {"Thomas Jefferson", "George Washington", "Andrew Jackson", "Abraham Lincoln"},
-            {"La batalla de Hastings", "La batalla del Álamo", "La batalla de Stalingrado", "La batalla de Waterloo"},
             {"Aristóteles", "Ptolomeo", "Platón", "Sócrates"},
-            {"Buzz Aldrin", "Yuri Gagarin", "Neil Armstrong", "Adriyan Nikolayev"}
+            {"Buzz Aldrin", "Yuri Gagarin", "Neil Armstrong", "Adriyan Nikolayev"},
+            {"La batalla de Trafalgar", "La batalla de Bailén", "La batalla de Austerlitz", "La batalla de Waterloo"}
     };
 
     private int[] soluciones = {
             0,
             1,
-            3,
             2,
-            1
+            1,
+            3
     };
 
     public String getPregunta(int i) {
