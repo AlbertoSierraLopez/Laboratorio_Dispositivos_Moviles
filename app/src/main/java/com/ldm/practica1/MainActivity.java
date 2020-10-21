@@ -80,9 +80,9 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         // Cambiar los colores de las respuestas para revelar la correcta
         for (int i = 0; i < listViewRespuestas.getChildCount(); i++) {
             if (i == libreria.getSolucion(contadorPreguntas)) {
-                listViewRespuestas.getChildAt(i).setBackgroundColor(Color.GREEN);
+                listViewRespuestas.getChildAt(i).setBackgroundColor(Color.parseColor("#A2D2FF"));
             } else {
-                listViewRespuestas.getChildAt(i).setBackgroundColor(Color.RED);
+                listViewRespuestas.getChildAt(i).setBackgroundColor(Color.parseColor("#FFAFCC"));
             }
         }
 

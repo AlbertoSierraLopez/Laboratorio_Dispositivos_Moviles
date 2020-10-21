@@ -4,16 +4,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#EFFBF9"
     tools:context=".ResultadosActivity">
 
     <TextView
         android:id="@+id/txtFinal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="28dp"
+        android:gravity="center"
         android:text="@string/stringFinal"
-        android:textSize="36sp"
+        android:textColor="#04100F"
+        android:textSize="40sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.493"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -21,30 +25,47 @@
         android:id="@+id/txtPuntuacion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="52dp"
+        android:layout_marginTop="28dp"
+        android:gravity="center"
         android:text="Tu puntuación: "
+        android:textColor="#04100F"
+        android:textSize="28sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.488"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtFinal" />
 
     <TextView
         android:id="@+id/txtResultado"
-        android:layout_width="57dp"
-        android:layout_height="23dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textColor="#264653"
+        android:textSize="32sp"
         app:layout_constraintEnd_toEndOf="@+id/txtPuntuacion"
         app:layout_constraintStart_toStartOf="@+id/txtPuntuacion"
         app:layout_constraintTop_toBottomOf="@+id/txtPuntuacion" />
+
+    <ImageView
+        android:id="@+id/imgPartenon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/radioGroupResultados"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtResultado"
+        app:srcCompat="@drawable/partenon__1_" />
 
     <RadioGroup
         android:id="@+id/radioGroupResultados"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="144dp"
-        android:layout_marginBottom="390dp"
+        android:layout_marginBottom="56dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtPuntuacion">
+        app:layout_constraintTop_toBottomOf="@+id/imgPartenon">
 
         <RadioButton
             android:id="@+id/radioCompartir"
@@ -72,6 +93,7 @@
             android:drawableLeft="@drawable/ic_baseline_exit_to_app_24"
             android:onClick="terminar"
             android:text="@string/radioSalir" />
+
     </RadioGroup>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
