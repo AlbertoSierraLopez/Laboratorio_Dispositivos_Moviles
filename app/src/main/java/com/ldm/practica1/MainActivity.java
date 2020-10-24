@@ -90,6 +90,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         startActivity(reiniciar);
     }
 
+    // La forma de avanzar a la siguiente pantalla es siempre el botón siguiente
     public void continuar(View view) {
         // El juego permite saltar preguntas sin responder
         contadorPreguntas++;    // "Al final de la pregunta el contador de preguntas señal el número real de la pregunta que se ha respondido (1-5)"

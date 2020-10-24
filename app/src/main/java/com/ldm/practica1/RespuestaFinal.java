@@ -31,7 +31,9 @@ public class RespuestaFinal extends AppCompatActivity {
 
     // Esto se puede meter en LibreriaQuiz, pero como solo hay una pregunta de este tipo no me he molestado
     String preguntaFinal = "¿Qué escudo de armas representa al antiguo Sacro Imperio Romano Germánico?";
+    // respuestas es un array de imágenes, o mejor dicho de direcciones de memoria con esas imágenes
     int[] respuestas = {R.drawable.lesser_arms_of_bohemia_and_moravia__1939_1945__svg, R.drawable.holy_roman_empire_arms_double_head_256px_svg, R.drawable.coat_of_arms_holy_see_svg, R.drawable.coat_of_arms_of_the_house_of_savoy_198px_svg};
+    // solucion es el indice de respuestas que corresponde con la respuesta correcta
     int solucion = 1;
 
     @Override
@@ -45,6 +47,7 @@ public class RespuestaFinal extends AppCompatActivity {
         reiniciar = (Button) findViewById(R.id.btnSiguiente);
         siguiente = (Button) findViewById(R.id.btnReiniciar);
 
+        // imagenes guarda los ImageViews que componen las respuestas a la pregunta
         imagenes = new ArrayList<>();
         imagenes.add((ImageView) findViewById(R.id.img0));
         imagenes.add((ImageView) findViewById(R.id.img1));
@@ -58,12 +61,15 @@ public class RespuestaFinal extends AppCompatActivity {
         pregunta.setText(preguntaFinal);
         // Mostrar respuestas
         for (int i = 0; i < 4; i++) {
+            // A cada ImageView se le asigna un recurso guardado en respuestas
             imagenes.get(i).setImageResource(respuestas[i]);
         }
     }
 
     public void onClick(View view) {
+        // elementoPulsado es el ImageView concreto en el que se ha hecho click
         ImageView elementoPulsado = (ImageView) findViewById(view.getId());
+        // pulsado es el indice del array imagenes que ocupa elementoPulsado, que luego comparamos con solucion para saber si es el correcto o no
         int pulsado = imagenes.indexOf((ImageView) findViewById(view.getId()));
         if (pulsado == solucion) {
             Toast.makeText(this, "La respuesta es correcta", Toast.LENGTH_LONG).show();
@@ -72,10 +78,12 @@ public class RespuestaFinal extends AppCompatActivity {
             Toast.makeText(this, "La respuesta es incorrecta", Toast.LENGTH_LONG).show();
             puntuacion -= 2;
         }
+        // Las imageViews incorrectas se hacen desaparecer para revelar la correcta
         for (int i = 0; i < imagenes.size(); i++) {
             if (i != solucion) {
                 imagenes.get(i).setVisibility(INVISIBLE);
             }
+            // Y se elimina la posibilidad de pulsar varias veces en las respuestas para acumular puntos
             imagenes.get(i).setEnabled(false);
         }
     }
@@ -85,6 +93,7 @@ public class RespuestaFinal extends AppCompatActivity {
         startActivity(reiniciar);
     }
 
+    // La forma de avanzar a la siguiente pantalla es siempre el botón siguiente
     public void continuar(View view) {
         Intent acabar = new Intent(this, ResultadosActivity.class);
         // Además de llamar a la activity hay que pasarle el dato de la puntuación para que lo pueda mostrar allí
