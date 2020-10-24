@@ -63,7 +63,8 @@ public class RespuestaFinal extends AppCompatActivity {
     }
 
     public void onClick(View view) {
-        int pulsado = imagenes.indexOf(view.getId());
+        ImageView elementoPulsado = (ImageView) findViewById(view.getId());
+        int pulsado = imagenes.indexOf((ImageView) findViewById(view.getId()));
         if (pulsado == solucion) {
             Toast.makeText(this, "La respuesta es correcta", Toast.LENGTH_LONG).show();
             puntuacion += 3;
