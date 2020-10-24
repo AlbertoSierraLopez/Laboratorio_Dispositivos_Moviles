@@ -17,6 +17,8 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
+import static android.view.View.INVISIBLE;
+
 public class RespuestaFinal extends AppCompatActivity {
     // Declaración de variables
     private TextView numeroPregunta;
@@ -27,6 +29,7 @@ public class RespuestaFinal extends AppCompatActivity {
 
     private int puntuacion;
 
+    // Esto se puede meter en LibreriaQuiz, pero como solo hay una pregunta de este tipo no me he molestado
     String preguntaFinal = "¿Qué escudo de armas representa al antiguo Sacro Imperio Romano Germánico?";
     int[] respuestas = {R.drawable.lesser_arms_of_bohemia_and_moravia__1939_1945__svg, R.drawable.holy_roman_empire_arms_double_head_256px_svg, R.drawable.coat_of_arms_holy_see_svg, R.drawable.coat_of_arms_of_the_house_of_savoy_198px_svg};
     int solucion = 1;
@@ -53,7 +56,6 @@ public class RespuestaFinal extends AppCompatActivity {
         // Mostrar pregunta
         numeroPregunta.setText("Pregunta final");
         pregunta.setText(preguntaFinal);
-
         // Mostrar respuestas
         for (int i = 0; i < 4; i++) {
             imagenes.get(i).setImageResource(respuestas[i]);
@@ -61,7 +63,20 @@ public class RespuestaFinal extends AppCompatActivity {
     }
 
     public void onClick(View view) {
-
+        int pulsado = imagenes.indexOf(view.getId());
+        if (pulsado == solucion) {
+            Toast.makeText(this, "La respuesta es correcta", Toast.LENGTH_LONG).show();
+            puntuacion += 3;
+        } else {
+            Toast.makeText(this, "La respuesta es incorrecta", Toast.LENGTH_LONG).show();
+            puntuacion -= 2;
+        }
+        for (int i = 0; i < imagenes.size(); i++) {
+            if (i != solucion) {
+                imagenes.get(i).setVisibility(INVISIBLE);
+            }
+            imagenes.get(i).setEnabled(false);
+        }
     }
 
     public void reiniciar(View view) {

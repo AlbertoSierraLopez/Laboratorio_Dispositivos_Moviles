@@ -37,14 +37,13 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         // Conectar la parte lógica con el diseño
         numeroPregunta = (TextView) findViewById(R.id.txtNumeroPregunta);
         pregunta = (TextView) findViewById(R.id.txtPregunta);
         reiniciar = (Button) findViewById(R.id.btnSiguiente);
         siguiente = (Button) findViewById(R.id.btnReiniciar);
         listViewRespuestas = (ListView) findViewById(R.id.listViewRespuestas);
-
+        // Lanzar el ciclo de juego que se repetirá tantas veces como preguntas haya (NPREGUNTAS)
         cicloDeJuego();
     }
 
@@ -52,14 +51,12 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         // Mostrar pregunta
         numeroPregunta.setText("Pregunta " + (contadorPreguntas + 1));
         pregunta.setText(libreria.getPregunta(contadorPreguntas));
-
         // Cargar la lista de respuestas
         listaRespuestas = new ArrayList<>();
         listaRespuestas.add(libreria.getRespuesta0(contadorPreguntas));
         listaRespuestas.add(libreria.getRespuesta1(contadorPreguntas));
         listaRespuestas.add(libreria.getRespuesta2(contadorPreguntas));
         listaRespuestas.add(libreria.getRespuesta3(contadorPreguntas));
-
         // Configurar el adaptador para mostrar las respuestas
         ArrayAdapter adaptadorListaRespuestas = new ArrayAdapter(this, android.R.layout.simple_list_item_1, listaRespuestas);
         listViewRespuestas.setAdapter(adaptadorListaRespuestas);
@@ -69,8 +66,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//        String respuesta = listaRespuestas.get(position);
-
         if (position == libreria.getSolucion(contadorPreguntas)) {
             Toast.makeText(this, "La respuesta es correcta", Toast.LENGTH_LONG).show();
             puntuacion += 3;
@@ -78,7 +73,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             Toast.makeText(this, "La respuesta es incorrecta", Toast.LENGTH_LONG).show();
             puntuacion -= 2;
         }
-
         // Cambiar los colores de las respuestas para revelar la correcta
         for (int i = 0; i < listViewRespuestas.getChildCount(); i++) {
             if (i == libreria.getSolucion(contadorPreguntas)) {
@@ -87,7 +81,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                 listViewRespuestas.getChildAt(i).setBackgroundColor(Color.parseColor("#FFAFCC"));
             }
         }
-
         // Solo se puede responder una vez
         listViewRespuestas.setEnabled(false);   // Desactiva el listView para no responder múltiples veces a la misma pregunta y ganar puntos extra
     }
