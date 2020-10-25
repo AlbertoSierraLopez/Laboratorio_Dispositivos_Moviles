@@ -3,14 +3,10 @@ package com.ldm.practica1;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -19,7 +15,7 @@ import java.util.List;
 
 import static android.view.View.INVISIBLE;
 
-public class RespuestaFinal extends AppCompatActivity {
+public class RespuestaFinalActivity extends AppCompatActivity {
     // Declaración de variables
     private TextView numeroPregunta;
     private TextView pregunta;
@@ -32,7 +28,7 @@ public class RespuestaFinal extends AppCompatActivity {
     // Esto se puede meter en LibreriaQuiz, pero como solo hay una pregunta de este tipo no me he molestado
     String preguntaFinal = "¿Qué escudo de armas representa al antiguo Sacro Imperio Romano Germánico?";
     // respuestas es un array de imágenes, o mejor dicho de direcciones de memoria con esas imágenes
-    int[] respuestas = {R.drawable.lesser_arms_of_bohemia_and_moravia__1939_1945__svg, R.drawable.holy_roman_empire_arms_double_head_256px_svg, R.drawable.coat_of_arms_holy_see_svg, R.drawable.coat_of_arms_of_the_house_of_savoy_198px_svg};
+    int[] respuestas = {R.drawable.escudo_bohemia, R.drawable.escudo_sacro_imperio, R.drawable.escudo_papal, R.drawable.escudo_savoya};
     // solucion es el indice de respuestas que corresponde con la respuesta correcta
     int solucion = 1;
 

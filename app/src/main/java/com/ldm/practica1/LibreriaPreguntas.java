@@ -1,6 +1,6 @@
 package com.ldm.practica1;
 
-public class LibreriaQuiz {
+public class LibreriaPreguntas {
 
 /*    String datosQuiz[][] = {
             {"¿Qué líder tribal luchó contra la ocupación romana de Britania?", "Boudica", "Tácito", "Ariovistus", "Prasutagus"},

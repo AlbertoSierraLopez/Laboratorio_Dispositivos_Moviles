@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
     List<String> listaRespuestas;
 
-    private LibreriaQuiz libreria = new LibreriaQuiz();
+    private LibreriaPreguntas libreria = new LibreriaPreguntas();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -97,7 +97,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         if (contadorPreguntas < NPREGUNTAS) {   // Si aun quedan preguntas se lanza el ciclo de juego
             cicloDeJuego();
         } else {                                // Si se han respondido todas las preguntas, se lanza la pantalla resumen final
-            Intent respuestaFinal = new Intent(this, RespuestaFinal.class);
+            Intent respuestaFinal = new Intent(this, RespuestaFinalActivity.class);
             // Además de llamar a la activity hay que pasarle el dato de la puntuación para que lo pueda mostrar allí
             respuestaFinal.putExtra("puntuacion", puntuacion);
             startActivity(respuestaFinal);

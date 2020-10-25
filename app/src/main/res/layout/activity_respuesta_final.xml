@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#EFFBF9"
-    tools:context=".RespuestaFinal">
+    tools:context=".RespuestaFinalActivity">
 
     <TextView
         android:id="@+id/txtNumeroPregunta"
