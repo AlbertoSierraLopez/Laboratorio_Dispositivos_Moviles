@@ -13,11 +13,13 @@ import android.widget.TextView;
 
 public class ResultadosActivity extends AppCompatActivity {
     private TextView txtFinal;
-    private TextView puntuacion;
-    private TextView resultado;
+    private TextView txtPuntuacion;
+    private TextView txtResultado;
     private CheckBox compartir;
     private CheckBox reiniciar;
     private CheckBox salir;
+
+    private int puntuacion;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,17 +27,17 @@ public class ResultadosActivity extends AppCompatActivity {
         setContentView(R.layout.activity_resultados);
 
         // Conectar la parte lógica con el diseño
-        resultado = (TextView) findViewById(R.id.txtResultado);
+        txtResultado = (TextView) findViewById(R.id.txtResultado);
 
         // Recoge la puntuación final de la otra activity
-        int puntuacion = getIntent().getIntExtra("puntuacionFinal", 0);
+        puntuacion = getIntent().getIntExtra("puntuacionFinal", 0);
         // Mostrar resultado final
-        resultado.setText(Integer.toString(puntuacion));
+        txtResultado.setText(Integer.toString(puntuacion)); // Sin el toString peta la aplicación
     }
 
     public void reiniciar(View v) {
-        Intent reiniciar = new Intent(this, MainActivity.class);
-        startActivity(reiniciar);
+        Intent intentReiniciar = new Intent(this, MainActivity.class);
+        startActivity(intentReiniciar);
     }
 
     public void terminar(View v) {
@@ -44,7 +46,12 @@ public class ResultadosActivity extends AppCompatActivity {
     }
 
     public void compartir(View v) {
-        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.twitter.com"));
-        startActivity(browserIntent);
+        Intent intentCompartir = new Intent();
+        intentCompartir.setAction(Intent.ACTION_SEND);
+        intentCompartir.putExtra(Intent.EXTRA_TEXT, "He conseguido una puntuación de " + puntuacion + " en Quiz de Historia Universal.");
+        intentCompartir.setType("text/plain");
+
+        Intent shareIntent = Intent.createChooser(intentCompartir, null);
+        startActivity(shareIntent);
     }
 }

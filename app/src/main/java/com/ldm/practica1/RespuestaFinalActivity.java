@@ -85,15 +85,15 @@ public class RespuestaFinalActivity extends AppCompatActivity {
     }
 
     public void reiniciar(View view) {
-        Intent reiniciar = new Intent(this, MainActivity.class);
-        startActivity(reiniciar);
+        Intent intentReiniciar = new Intent(this, MainActivity.class);
+        startActivity(intentReiniciar);
     }
 
     // La forma de avanzar a la siguiente pantalla es siempre el botón siguiente
     public void continuar(View view) {
-        Intent acabar = new Intent(this, ResultadosActivity.class);
+        Intent intentContinuar = new Intent(this, ResultadosActivity.class);
         // Además de llamar a la activity hay que pasarle el dato de la puntuación para que lo pueda mostrar allí
-        acabar.putExtra("puntuacionFinal", puntuacion);
-        startActivity(acabar);
+        intentContinuar.putExtra("puntuacionFinal", puntuacion);
+        startActivity(intentContinuar);
     }
 }

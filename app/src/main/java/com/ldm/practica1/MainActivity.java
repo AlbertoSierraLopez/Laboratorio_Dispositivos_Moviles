@@ -86,8 +86,8 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     }
 
     public void reiniciar(View view) {
-        Intent reiniciar = new Intent(this, MainActivity.class);
-        startActivity(reiniciar);
+        Intent intentReiniciar = new Intent(this, MainActivity.class);
+        startActivity(intentReiniciar);
     }
 
     // La forma de avanzar a la siguiente pantalla es siempre el botón siguiente
@@ -97,10 +97,10 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         if (contadorPreguntas < NPREGUNTAS) {   // Si aun quedan preguntas se lanza el ciclo de juego
             cicloDeJuego();
         } else {                                // Si se han respondido todas las preguntas, se lanza la pantalla resumen final
-            Intent respuestaFinal = new Intent(this, RespuestaFinalActivity.class);
+            Intent intentContinuar = new Intent(this, RespuestaFinalActivity.class);
             // Además de llamar a la activity hay que pasarle el dato de la puntuación para que lo pueda mostrar allí
-            respuestaFinal.putExtra("puntuacion", puntuacion);
-            startActivity(respuestaFinal);
+            intentContinuar.putExtra("puntuacion", puntuacion);
+            startActivity(intentContinuar);
         }
     }
 }
