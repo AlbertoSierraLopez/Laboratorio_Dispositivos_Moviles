@@ -11,6 +11,6 @@
     <string name="imagePlaceholderDescription">Este ImageView albergará una respuesta en formato imagen a una pregunta cuando la aplicación lo requiera</string>
     <string name="imgPartenonDescription">Esta imagen es el icono de la aplicación y se usa para representar Quiz de Historia Universal</string>
     <string name="txtPuntuacion">Tu puntuación:</string>
-    <string name="txtPregunta">Pregunta %1$d</string>
+    <string name="txtPregunta">Pregunta %d</string>
     <string name="txtPreguntaFinal">Pregunta Final</string>
 </resources>
