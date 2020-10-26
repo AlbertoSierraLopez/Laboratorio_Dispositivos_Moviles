@@ -3,22 +3,13 @@ package com.ldm.practica1;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.TextView;
 
-public class ResultadosActivity extends AppCompatActivity {
-    private TextView txtFinal;
-    private TextView txtPuntuacion;
-    private TextView txtResultado;
-    private CheckBox compartir;
-    private CheckBox reiniciar;
-    private CheckBox salir;
+import java.util.Locale;
 
+public class ResultadosActivity extends AppCompatActivity {
     private int puntuacion;
 
     @Override
@@ -27,12 +18,12 @@ public class ResultadosActivity extends AppCompatActivity {
         setContentView(R.layout.activity_resultados);
 
         // Conectar la parte lógica con el diseño
-        txtResultado = (TextView) findViewById(R.id.txtResultado);
+        TextView txtResultado = findViewById(R.id.txtResultado);
 
         // Recoge la puntuación final de la otra activity
         puntuacion = getIntent().getIntExtra("puntuacionFinal", 0);
         // Mostrar resultado final
-        txtResultado.setText(Integer.toString(puntuacion)); // Sin el toString peta la aplicación
+        txtResultado.setText(String.format(Locale.getDefault(), "%d", puntuacion)); // Si no se cambia el int a string peta la app
     }
 
     public void reiniciar(View v) {

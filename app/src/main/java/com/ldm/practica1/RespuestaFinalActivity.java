@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -16,11 +15,6 @@ import java.util.List;
 import static android.view.View.INVISIBLE;
 
 public class RespuestaFinalActivity extends AppCompatActivity {
-    // Declaración de variables
-    private TextView numeroPregunta;
-    private TextView pregunta;
-    private Button reiniciar;
-    private Button siguiente;
     private List<ImageView> imagenes;
 
     private int puntuacion;
@@ -38,10 +32,9 @@ public class RespuestaFinalActivity extends AppCompatActivity {
         setContentView(R.layout.activity_respuesta_final);
 
         // Conectar la parte lógica con el diseño
-        numeroPregunta = (TextView) findViewById(R.id.txtNumeroPregunta);
-        pregunta = (TextView) findViewById(R.id.txtPregunta);
-        reiniciar = (Button) findViewById(R.id.btnSiguiente);
-        siguiente = (Button) findViewById(R.id.btnReiniciar);
+        // Declaración de variables
+        TextView numeroPregunta = findViewById(R.id.txtNumeroPregunta);
+        TextView pregunta = findViewById(R.id.txtPregunta);
 
         // imagenes guarda los ImageViews que componen las respuestas a la pregunta
         imagenes = new ArrayList<>();
@@ -53,7 +46,8 @@ public class RespuestaFinalActivity extends AppCompatActivity {
         puntuacion = getIntent().getIntExtra("puntuacion", 0);
 
         // Mostrar pregunta
-        numeroPregunta.setText("Pregunta final");
+        numeroPregunta.setText(R.string.txtPreguntaFinal);
+        // En lugar de poner el string directamente por lo visto es mejor llamarlo desde strings.xml
         pregunta.setText(preguntaFinal);
         // Mostrar respuestas
         for (int i = 0; i < 4; i++) {
@@ -63,11 +57,10 @@ public class RespuestaFinalActivity extends AppCompatActivity {
     }
 
     public void onClick(View view) {
-        // elementoPulsado es el ImageView concreto en el que se ha hecho click
-        ImageView elementoPulsado = (ImageView) findViewById(view.getId());
         // pulsado es el indice del array imagenes que ocupa elementoPulsado, que luego comparamos con solucion para saber si es el correcto o no
-        int pulsado = imagenes.indexOf((ImageView) findViewById(view.getId()));
-        if (pulsado == solucion) {
+        ImageView elementoPulsado = findViewById(view.getId());
+        int indicePulsado = imagenes.indexOf(elementoPulsado);
+        if (indicePulsado == solucion) {
             Toast.makeText(this, "La respuesta es correcta", Toast.LENGTH_LONG).show();
             puntuacion += 3;
         } else {

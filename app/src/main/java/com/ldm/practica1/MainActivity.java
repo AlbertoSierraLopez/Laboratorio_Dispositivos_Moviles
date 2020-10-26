@@ -8,7 +8,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -18,12 +17,10 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
     // Declaración de variables
-    private final int NPREGUNTAS = 5;
+    private static final int NPREGUNTAS = 5;
 
     private TextView numeroPregunta;
     private TextView pregunta;
-    private Button reiniciar;
-    private Button siguiente;
     private ListView listViewRespuestas;
 
     private int contadorPreguntas = 0;
@@ -38,18 +35,17 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         // Conectar la parte lógica con el diseño
-        numeroPregunta = (TextView) findViewById(R.id.txtNumeroPregunta);
-        pregunta = (TextView) findViewById(R.id.txtPregunta);
-        reiniciar = (Button) findViewById(R.id.btnSiguiente);
-        siguiente = (Button) findViewById(R.id.btnReiniciar);
-        listViewRespuestas = (ListView) findViewById(R.id.listViewRespuestas);
+        numeroPregunta = findViewById(R.id.txtNumeroPregunta);
+        pregunta = findViewById(R.id.txtPregunta);
+        listViewRespuestas = findViewById(R.id.listViewRespuestas);
         // Lanzar el ciclo de juego que se repetirá tantas veces como preguntas haya (NPREGUNTAS)
         cicloDeJuego();
     }
 
     public void cicloDeJuego() {
         // Mostrar pregunta
-        numeroPregunta.setText("Pregunta " + (contadorPreguntas + 1));
+        String sPregunta = getResources().getString(R.string.txtPregunta, contadorPreguntas + 1);   // String con valores variables que se rellenan ahora con el numero de la pregunta
+        numeroPregunta.setText(sPregunta);
         pregunta.setText(libreria.getPregunta(contadorPreguntas));
         // Cargar la lista de respuestas
         listaRespuestas = new ArrayList<>();
@@ -58,7 +54,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         listaRespuestas.add(libreria.getRespuesta2(contadorPreguntas));
         listaRespuestas.add(libreria.getRespuesta3(contadorPreguntas));
         // Configurar el adaptador para mostrar las respuestas
-        ArrayAdapter adaptadorListaRespuestas = new ArrayAdapter(this, android.R.layout.simple_list_item_1, listaRespuestas);
+        ArrayAdapter<String> adaptadorListaRespuestas = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, listaRespuestas);
         listViewRespuestas.setAdapter(adaptadorListaRespuestas);
         listViewRespuestas.setOnItemClickListener(this);
         listViewRespuestas.setEnabled(true);    // Esto activa de nuevo el listView en caso de que hubiese sido desactivado
