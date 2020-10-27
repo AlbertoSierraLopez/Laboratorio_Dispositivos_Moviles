@@ -16,7 +16,6 @@
         android:textColor="#04100F"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -88,10 +87,9 @@
         android:paddingRight="3dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/btnSiguiente"
-        app:layout_constraintHorizontal_bias="0.488"
         app:layout_constraintStart_toEndOf="@+id/btnReiniciar"
         app:layout_constraintTop_toBottomOf="@+id/img2"
-        app:layout_constraintVertical_bias="0.988" />
+        app:layout_constraintVertical_bias="1.0" />
 
     <ImageView
         android:id="@+id/img0"
@@ -114,7 +112,6 @@
         android:contentDescription="@string/imagePlaceholderDescription"
         android:onClick="onImageViewClick"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toEndOf="@+id/img0"
         app:layout_constraintTop_toBottomOf="@+id/txtPregunta"
         tools:srcCompat="@tools:sample/avatars" />
