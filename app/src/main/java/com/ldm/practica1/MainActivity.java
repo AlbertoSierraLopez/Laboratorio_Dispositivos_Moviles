@@ -58,7 +58,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         pregunta.setCompoundDrawablesWithIntrinsicBounds(idImagen, 0, 0, 0);
         // El texto se pega a la derecha si hay una imagen o se centra si no la hay
         if (idImagen != 0) {
-            pregunta.setGravity(Gravity.LEFT);
+            pregunta.setGravity(Gravity.START);
         } else {
             pregunta.setGravity(Gravity.CENTER);
         }
