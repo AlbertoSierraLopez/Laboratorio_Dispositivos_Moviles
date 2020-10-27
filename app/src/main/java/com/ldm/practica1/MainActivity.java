@@ -22,7 +22,7 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
     // Declaración de variables
-    private static final int NPREGUNTAS = 5;
+    private static final int NPREGUNTAS = 4;
 
     private TextView numeroPregunta;
     private TextView pregunta;
@@ -52,6 +52,16 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         String sPregunta = getResources().getString(R.string.txtPregunta, contadorPreguntas + 1);   // String con valores variables que se rellenan ahora con el numero de la pregunta
         numeroPregunta.setText(sPregunta);
         pregunta.setText(libreria.getPregunta(contadorPreguntas));
+        // Cargar imagen si la hubiera
+        int idImagen = libreria.getImagen(contadorPreguntas);
+        // idImagen puede ser una imagen guardada en R o un 0, si es un 0 se borra la imagen que hubiese de la pregunta anterior
+        pregunta.setCompoundDrawablesWithIntrinsicBounds(idImagen, 0, 0, 0);
+        // El texto se pega a la derecha si hay una imagen o se centra si no la hay
+        if (idImagen != 0) {
+            pregunta.setGravity(Gravity.LEFT);
+        } else {
+            pregunta.setGravity(Gravity.CENTER);
+        }
         // Cargar la lista de respuestas
         listaRespuestas = new ArrayList<>();
         listaRespuestas.add(libreria.getRespuesta0(contadorPreguntas));
@@ -117,7 +127,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         final PopupWindow popupWindow = new PopupWindow(popupView, width, height, focusable);
 
         // show the popup window
-        // which view you pass in doesn't matter, it is only used for the window tolken
+        // which view you pass in doesn't matter, it is only used for the window token
         popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0);
 
         // dismiss the popup window when touched

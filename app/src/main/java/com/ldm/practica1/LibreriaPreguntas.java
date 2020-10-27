@@ -15,15 +15,20 @@ public class LibreriaPreguntas {
 
     private String[] preguntas = {
             "¿Qué emperador romano legalizó el cristianismo y puso fin a la persecución de los cristianos?",
-            "¿Quién fue el primer presidente de los Estados Unidos?",
             "¿A qué filósofo griego se le atribuye la obra \"La República\"?",
             "¿Quién fue el primer humano en viajar al espacio?",
             "¿En qué batalla fue finalmente derrotado Napoleón Bonaparte?"
     };
 
+    private int[] imagenes = {
+            R.drawable.constantino_i,
+            0,
+            0,
+            R.drawable.el_emperador_napoleon
+    };
+
     private String[][] respuestas = {
             {"Constantino", "Adriano", "Trajano", "Nerón"},
-            {"Thomas Jefferson", "George Washington", "Andrew Jackson", "Abraham Lincoln"},
             {"Aristóteles", "Ptolomeo", "Platón", "Sócrates"},
             {"Buzz Aldrin", "Yuri Gagarin", "Neil Armstrong", "Adriyan Nikolayev"},
             {"La batalla de Trafalgar", "La batalla de Bailén", "La batalla de Austerlitz", "La batalla de Waterloo"}
@@ -31,7 +36,6 @@ public class LibreriaPreguntas {
 
     private int[] soluciones = {
             0,
-            1,
             2,
             1,
             3
@@ -39,6 +43,10 @@ public class LibreriaPreguntas {
 
     public String getPregunta(int i) {
         return preguntas[i];
+    }
+
+    public int getImagen(int i) {
+        return imagenes[i];
     }
 
     public String getRespuesta0(int i) {
