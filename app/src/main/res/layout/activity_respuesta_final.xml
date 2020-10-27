@@ -40,7 +40,7 @@
 
     <Button
         android:id="@+id/btnReiniciar"
-        android:layout_width="164dp"
+        android:layout_width="144dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
@@ -57,7 +57,7 @@
 
     <Button
         android:id="@+id/btnSiguiente"
-        android:layout_width="164dp"
+        android:layout_width="144dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
@@ -72,6 +72,27 @@
         app:layout_constraintTop_toBottomOf="@+id/img3"
         app:layout_constraintVertical_bias="1.0" />
 
+
+    <Button
+        android:id="@+id/btnAyuda"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginBottom="36dp"
+        android:background="#E9C46A"
+        android:contentDescription="@string/imgAyuda"
+        android:drawableStart="@drawable/ic_baseline_help_24"
+        android:drawableLeft="@drawable/ic_baseline_help_24"
+        android:gravity="center"
+        android:onClick="popupAyuda"
+        android:paddingLeft="3dp"
+        android:paddingRight="3dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/btnSiguiente"
+        app:layout_constraintHorizontal_bias="0.488"
+        app:layout_constraintStart_toEndOf="@+id/btnReiniciar"
+        app:layout_constraintTop_toBottomOf="@+id/img2"
+        app:layout_constraintVertical_bias="0.988" />
+
     <ImageView
         android:id="@+id/img0"
         android:layout_width="128dp"
@@ -80,7 +101,7 @@
         android:layout_marginLeft="52dp"
         android:layout_marginTop="42dp"
         android:contentDescription="@string/imagePlaceholderDescription"
-        android:onClick="onClick"
+        android:onClick="onImageViewClick"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtPregunta"
         tools:srcCompat="@tools:sample/avatars" />
@@ -91,7 +112,7 @@
         android:layout_height="128dp"
         android:layout_marginTop="42dp"
         android:contentDescription="@string/imagePlaceholderDescription"
-        android:onClick="onClick"
+        android:onClick="onImageViewClick"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toEndOf="@+id/img0"
@@ -104,7 +125,7 @@
         android:layout_height="128dp"
         android:layout_marginTop="42dp"
         android:contentDescription="@string/imagePlaceholderDescription"
-        android:onClick="onClick"
+        android:onClick="onImageViewClick"
         app:layout_constraintEnd_toStartOf="@+id/img3"
         app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="parent"
@@ -119,7 +140,7 @@
         android:layout_marginEnd="52dp"
         android:layout_marginRight="52dp"
         android:contentDescription="@string/imagePlaceholderDescription"
-        android:onClick="onClick"
+        android:onClick="onImageViewClick"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/img1"
         tools:srcCompat="@tools:sample/avatars" />
