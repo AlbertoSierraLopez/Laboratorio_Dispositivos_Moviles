@@ -108,9 +108,10 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         if (contadorPreguntas < NPREGUNTAS) {   // Si aun quedan preguntas se lanza el ciclo de juego
             cicloDeJuego();
         } else {                                // Si se han respondido todas las preguntas, se lanza la pantalla resumen final
-            Intent intentContinuar = new Intent(this, RespuestaFinalActivity.class);
+            Intent intentContinuar = new Intent(this, PreguntaEspecialActivity.class);
             // Además de llamar a la activity hay que pasarle el dato de la puntuación para que lo pueda mostrar allí
             intentContinuar.putExtra("puntuacion", puntuacion);
+            intentContinuar.putExtra("contadorPreguntas", contadorPreguntas);
             startActivity(intentContinuar);
         }
     }

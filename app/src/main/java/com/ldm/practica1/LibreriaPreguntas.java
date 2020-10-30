@@ -16,7 +16,7 @@ public class LibreriaPreguntas {
     private String[] preguntas = {
             "¿Qué emperador romano legalizó el cristianismo y puso fin a la persecución de los cristianos?",
             "¿A qué filósofo griego se le atribuye la obra \"La República\"?",
-            "¿Quién fue el primer humano en viajar al espacio?",
+            "¿Cuál es el nombre del primer humano en viajar al espacio?",
             "¿En qué lugar nació este famoso estadista francés?"
     };
 
@@ -40,6 +40,8 @@ public class LibreriaPreguntas {
             1,
             3
     };
+
+
 
     public String getPregunta(int i) {
         return preguntas[i];

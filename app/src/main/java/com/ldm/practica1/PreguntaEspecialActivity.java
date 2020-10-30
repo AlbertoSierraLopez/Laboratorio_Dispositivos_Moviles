@@ -19,10 +19,11 @@ import java.util.List;
 
 import static android.view.View.INVISIBLE;
 
-public class RespuestaFinalActivity extends AppCompatActivity {
+public class PreguntaEspecialActivity extends AppCompatActivity {
     private List<ImageView> imagenes;
 
     private int puntuacion;
+    private int contadorPreguntas;
 
     // Esto se puede meter en LibreriaQuiz, pero como solo hay una pregunta de este tipo no me he molestado
     String preguntaFinal = "¿Qué escudo de armas representa al antiguo Sacro Imperio Romano Germánico?";
@@ -34,7 +35,7 @@ public class RespuestaFinalActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_respuesta_final);
+        setContentView(R.layout.activity_pregunta_especial);
 
         // Conectar la parte lógica con el diseño
         // Declaración de variables
@@ -49,9 +50,11 @@ public class RespuestaFinalActivity extends AppCompatActivity {
         imagenes.add((ImageView) findViewById(R.id.img3));
 
         puntuacion = getIntent().getIntExtra("puntuacion", 0);
+        contadorPreguntas = getIntent().getIntExtra("contadorPreguntas", 0);
 
         // Mostrar pregunta
-        numeroPregunta.setText(R.string.txtPreguntaFinal);
+        String sPregunta = getResources().getString(R.string.txtPregunta, contadorPreguntas + 1);   // String con valores variables que se rellenan ahora con el numero de la pregunta
+        numeroPregunta.setText(sPregunta);
         // En lugar de poner el string directamente por lo visto es mejor llamarlo desde strings.xml
         pregunta.setText(preguntaFinal);
         // Mostrar respuestas
