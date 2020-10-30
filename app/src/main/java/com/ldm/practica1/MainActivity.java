@@ -45,6 +45,10 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         pregunta = findViewById(R.id.txtPregunta);
         listViewRespuestas = findViewById(R.id.listViewRespuestas);
 
+        // Por si se crea esta activity a la vuelta de una pregunta especial
+        puntuacion = getIntent().getIntExtra("puntuacion", 0);
+        contadorPreguntas = getIntent().getIntExtra("contadorPreguntas", 0);
+
         // Lanzar el ciclo de juego que se repetirá tantas veces como preguntas haya (NPREGUNTAS)
         cicloDeJuego();
     }

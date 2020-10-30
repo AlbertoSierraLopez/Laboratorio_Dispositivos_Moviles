@@ -47,13 +47,13 @@ public class PreguntaEspecialActivity extends AppCompatActivity {
         imagenes.add((ImageView) findViewById(R.id.img2));
         imagenes.add((ImageView) findViewById(R.id.img3));
 
+        puntuacion = getIntent().getIntExtra("puntuacion", 0);
+        contadorPreguntas = getIntent().getIntExtra("contadorPreguntas", 0);
+
         cicloDeJuego();
     }
 
     public void cicloDeJuego() {
-        puntuacion = getIntent().getIntExtra("puntuacion", 0);
-        contadorPreguntas = getIntent().getIntExtra("contadorPreguntas", 0);
-
         // Mostrar pregunta
         String sPregunta = getResources().getString(R.string.txtPregunta, contadorPreguntas + 1);   // String con valores variables que se rellenan ahora con el numero de la pregunta
         numeroPregunta.setText(sPregunta);
