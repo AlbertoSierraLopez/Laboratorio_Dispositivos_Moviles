@@ -17,7 +17,7 @@ public class LibreriaPreguntas {
             "¿Qué emperador romano legalizó el cristianismo y puso fin a la persecución de los cristianos?",
             "¿A qué filósofo griego se le atribuye la obra \"La República\"?",
             "¿Quién fue el primer humano en viajar al espacio?",
-            "¿En qué batalla fue finalmente derrotado Napoleón Bonaparte?"
+            "¿En qué lugar nació este famoso estadista francés?"
     };
 
     private int[] imagenes = {
@@ -31,7 +31,7 @@ public class LibreriaPreguntas {
             {"Constantino", "Adriano", "Trajano", "Nerón"},
             {"Aristóteles", "Ptolomeo", "Platón", "Sócrates"},
             {"Buzz Aldrin", "Yuri Gagarin", "Neil Armstrong", "Adriyan Nikolayev"},
-            {"La batalla de Trafalgar", "La batalla de Bailén", "La batalla de Austerlitz", "La batalla de Waterloo"}
+            {"Waterloo", "Milán", "Marsella", "Córcega"}
     };
 
     private int[] soluciones = {
