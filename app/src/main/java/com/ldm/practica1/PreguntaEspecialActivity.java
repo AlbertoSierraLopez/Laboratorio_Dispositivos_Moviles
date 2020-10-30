@@ -20,17 +20,16 @@ import java.util.List;
 import static android.view.View.INVISIBLE;
 
 public class PreguntaEspecialActivity extends AppCompatActivity {
+    private static final int NPREGUNTAS = 5;
+
     private List<ImageView> imagenes;
+    private TextView numeroPregunta;
+    private TextView pregunta;
 
     private int puntuacion;
     private int contadorPreguntas;
 
-    // Esto se puede meter en LibreriaQuiz, pero como solo hay una pregunta de este tipo no me he molestado
-    String preguntaFinal = "¿Qué escudo de armas representa al antiguo Sacro Imperio Romano Germánico?";
-    // respuestas es un array de imágenes, o mejor dicho de direcciones de memoria con esas imágenes
-    int[] respuestas = {R.drawable.escudo_bohemia, R.drawable.escudo_sacro_imperio, R.drawable.escudo_papal, R.drawable.escudo_savoya};
-    // solucion es el indice de respuestas que corresponde con la respuesta correcta
-    int solucion = 1;
+    private LibreriaPreguntas libreria = new LibreriaPreguntas();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,9 +37,8 @@ public class PreguntaEspecialActivity extends AppCompatActivity {
         setContentView(R.layout.activity_pregunta_especial);
 
         // Conectar la parte lógica con el diseño
-        // Declaración de variables
-        TextView numeroPregunta = findViewById(R.id.txtNumeroPregunta);
-        TextView pregunta = findViewById(R.id.txtPregunta);
+        numeroPregunta = findViewById(R.id.txtNumeroPregunta);
+        pregunta = findViewById(R.id.txtPregunta);
 
         // imagenes guarda los ImageViews que componen las respuestas a la pregunta
         imagenes = new ArrayList<>();
@@ -49,6 +47,10 @@ public class PreguntaEspecialActivity extends AppCompatActivity {
         imagenes.add((ImageView) findViewById(R.id.img2));
         imagenes.add((ImageView) findViewById(R.id.img3));
 
+        cicloDeJuego();
+    }
+
+    public void cicloDeJuego() {
         puntuacion = getIntent().getIntExtra("puntuacion", 0);
         contadorPreguntas = getIntent().getIntExtra("contadorPreguntas", 0);
 
@@ -56,8 +58,26 @@ public class PreguntaEspecialActivity extends AppCompatActivity {
         String sPregunta = getResources().getString(R.string.txtPregunta, contadorPreguntas + 1);   // String con valores variables que se rellenan ahora con el numero de la pregunta
         numeroPregunta.setText(sPregunta);
         // En lugar de poner el string directamente por lo visto es mejor llamarlo desde strings.xml
-        pregunta.setText(preguntaFinal);
+        pregunta.setText(libreria.getPregunta(contadorPreguntas));
+
+        // Cargar imagen si la hubiera
+        int idImagen = libreria.getImagen(contadorPreguntas);
+        // idImagen puede ser una imagen guardada en R o un 0, si es un 0 se borra la imagen que hubiese de la pregunta anterior
+        pregunta.setCompoundDrawablesWithIntrinsicBounds(idImagen, 0, 0, 0);
+        // El texto se pega a la derecha si hay una imagen o se centra si no la hay
+        if (idImagen != 0) {
+            pregunta.setGravity(Gravity.START);
+        } else {
+            pregunta.setGravity(Gravity.CENTER);
+        }
+
         // Mostrar respuestas
+        int [] respuestas = new int[4];
+        respuestas[0] = Integer.parseInt(libreria.getRespuesta0(contadorPreguntas));    // Como la dirección está guardada como un String hay que desencapsularlo antes de guardarlo
+        respuestas[1] = Integer.parseInt(libreria.getRespuesta1(contadorPreguntas));
+        respuestas[2] = Integer.parseInt(libreria.getRespuesta2(contadorPreguntas));
+        respuestas[3] = Integer.parseInt(libreria.getRespuesta3(contadorPreguntas));
+
         for (int i = 0; i < 4; i++) {
             // A cada ImageView se le asigna un recurso guardado en respuestas
             imagenes.get(i).setImageResource(respuestas[i]);
@@ -68,17 +88,18 @@ public class PreguntaEspecialActivity extends AppCompatActivity {
         // pulsado es el indice del array imagenes que ocupa elementoPulsado, que luego comparamos con solucion para saber si es el correcto o no
         ImageView elementoPulsado = findViewById(view.getId());
         int indicePulsado = imagenes.indexOf(elementoPulsado);
-        if (indicePulsado == solucion) {
+
+        if (indicePulsado == libreria.getSolucion(contadorPreguntas)) {
             Toast.makeText(this, "La respuesta es correcta", Toast.LENGTH_LONG).show();
-            // La pregunta final es especial y suma el doble de puntos
-            puntuacion += 6;
+            puntuacion += 3;
         } else {
             Toast.makeText(this, "La respuesta es incorrecta", Toast.LENGTH_LONG).show();
             puntuacion -= 2;
         }
+
         // Las imageViews incorrectas se hacen desaparecer para revelar la correcta
         for (int i = 0; i < imagenes.size(); i++) {
-            if (i != solucion) {
+            if (i != libreria.getSolucion(contadorPreguntas)) {
                 imagenes.get(i).setVisibility(INVISIBLE);
             }
             // Y se elimina la posibilidad de pulsar varias veces en las respuestas para acumular puntos
@@ -93,10 +114,27 @@ public class PreguntaEspecialActivity extends AppCompatActivity {
 
     // La forma de avanzar a la siguiente pantalla es siempre el botón siguiente
     public void continuar(View view) {
-        Intent intentContinuar = new Intent(this, ResultadosActivity.class);
-        // Además de llamar a la activity hay que pasarle el dato de la puntuación para que lo pueda mostrar allí
-        intentContinuar.putExtra("puntuacionFinal", puntuacion);
-        startActivity(intentContinuar);
+        // El juego permite saltar preguntas sin responder
+        contadorPreguntas++;    // "Al final de la pregunta el contador de preguntas señal el número real de la pregunta que se ha respondido (1-5)"
+
+        if (contadorPreguntas == NPREGUNTAS) {
+            Intent intentFinalizar = new Intent(this, ResultadosActivity.class);
+            // Además de llamar a la activity hay que pasarle el dato de la puntuación para que lo pueda mostrar allí
+            intentFinalizar.putExtra("puntuacionFinal", puntuacion);
+            startActivity(intentFinalizar);
+        } else {
+            // Si la siguiente pregunta no es especial, hay que hacer un intent y seguir en otra activity
+            if (!libreria.getEspecial(contadorPreguntas)) {
+                Intent intentContinuar = new Intent(this, MainActivity.class);
+                // Además de llamar a la activity hay que pasarle el dato de la puntuación para que lo pueda mostrar allí
+                intentContinuar.putExtra("puntuacion", puntuacion);
+                intentContinuar.putExtra("contadorPreguntas", contadorPreguntas);
+                startActivity(intentContinuar);
+            } else {
+                // Si no, seguimos aquí
+                cicloDeJuego();
+            }
+        }
     }
 
     public void popupAyuda(View view) {
