@@ -22,7 +22,7 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
     // Declaración de variables
-    private static final int NPREGUNTAS = 4;
+    private static final int NPREGUNTAS = 5;
 
     private TextView numeroPregunta;
     private TextView pregunta;
@@ -39,10 +39,16 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         // Conectar la parte lógica con el diseño
         numeroPregunta = findViewById(R.id.txtNumeroPregunta);
         pregunta = findViewById(R.id.txtPregunta);
         listViewRespuestas = findViewById(R.id.listViewRespuestas);
+
+        // Por si se crea esta activity a la vuelta de una pregunta especial
+        puntuacion = getIntent().getIntExtra("puntuacion", 0);
+        contadorPreguntas = getIntent().getIntExtra("contadorPreguntas", 0);
+
         // Lanzar el ciclo de juego que se repetirá tantas veces como preguntas haya (NPREGUNTAS)
         cicloDeJuego();
     }
@@ -52,6 +58,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         String sPregunta = getResources().getString(R.string.txtPregunta, contadorPreguntas + 1);   // String con valores variables que se rellenan ahora con el numero de la pregunta
         numeroPregunta.setText(sPregunta);
         pregunta.setText(libreria.getPregunta(contadorPreguntas));
+
         // Cargar imagen si la hubiera
         int idImagen = libreria.getImagen(contadorPreguntas);
         // idImagen puede ser una imagen guardada en R o un 0, si es un 0 se borra la imagen que hubiese de la pregunta anterior
@@ -62,12 +69,14 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         } else {
             pregunta.setGravity(Gravity.CENTER);
         }
+
         // Cargar la lista de respuestas
         listaRespuestas = new ArrayList<>();
         listaRespuestas.add(libreria.getRespuesta0(contadorPreguntas));
         listaRespuestas.add(libreria.getRespuesta1(contadorPreguntas));
         listaRespuestas.add(libreria.getRespuesta2(contadorPreguntas));
         listaRespuestas.add(libreria.getRespuesta3(contadorPreguntas));
+
         // Configurar el adaptador para mostrar las respuestas
         ArrayAdapter<String> adaptadorListaRespuestas = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, listaRespuestas);
         listViewRespuestas.setAdapter(adaptadorListaRespuestas);
@@ -84,6 +93,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             Toast.makeText(this, "La respuesta es incorrecta", Toast.LENGTH_LONG).show();
             puntuacion -= 2;
         }
+
         // Cambiar los colores de las respuestas para revelar la correcta
         for (int i = 0; i < listViewRespuestas.getChildCount(); i++) {
             if (i == libreria.getSolucion(contadorPreguntas)) {
@@ -92,6 +102,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                 listViewRespuestas.getChildAt(i).setBackgroundColor(Color.parseColor("#FFAFCC"));
             }
         }
+
         // Solo se puede responder una vez
         listViewRespuestas.setEnabled(false);   // Desactiva el listView para no responder múltiples veces a la misma pregunta y ganar puntos extra
     }
@@ -105,14 +116,24 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     public void continuar(View view) {
         // El juego permite saltar preguntas sin responder
         contadorPreguntas++;    // "Al final de la pregunta el contador de preguntas señal el número real de la pregunta que se ha respondido (1-5)"
-        if (contadorPreguntas < NPREGUNTAS) {   // Si aun quedan preguntas se lanza el ciclo de juego
-            cicloDeJuego();
-        } else {                                // Si se han respondido todas las preguntas, se lanza la pantalla resumen final
-            Intent intentContinuar = new Intent(this, PreguntaEspecialActivity.class);
+
+        if (contadorPreguntas == NPREGUNTAS) {
+            Intent intentFinalizar = new Intent(this, ResultadosActivity.class);
             // Además de llamar a la activity hay que pasarle el dato de la puntuación para que lo pueda mostrar allí
-            intentContinuar.putExtra("puntuacion", puntuacion);
-            intentContinuar.putExtra("contadorPreguntas", contadorPreguntas);
-            startActivity(intentContinuar);
+            intentFinalizar.putExtra("puntuacionFinal", puntuacion);
+            startActivity(intentFinalizar);
+        } else {
+            // Si la siguiente pregunta es especial, hay que hacer un intent y seguir en otra activity
+            if (libreria.getEspecial(contadorPreguntas)) {
+                Intent intentContinuar = new Intent(this, PreguntaEspecialActivity.class);
+                // Además de llamar a la activity hay que pasarle el dato de la puntuación para que lo pueda mostrar allí
+                intentContinuar.putExtra("puntuacion", puntuacion);
+                intentContinuar.putExtra("contadorPreguntas", contadorPreguntas);
+                startActivity(intentContinuar);
+            } else {
+                // Si no, seguimos aquí
+                cicloDeJuego();
+            }
         }
     }
 
