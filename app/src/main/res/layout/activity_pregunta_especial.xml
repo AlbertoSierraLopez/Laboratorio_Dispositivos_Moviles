@@ -5,37 +5,94 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#EFFBF9"
+    android:orientation="vertical"
     tools:context=".PreguntaEspecialActivity">
 
-    <TextView
-        android:id="@+id/txtNumeroPregunta"
-        android:layout_width="wrap_content"
-        android:layout_height="20dp"
-        android:layout_marginTop="24dp"
-        android:text="@string/placeholder_NumeroPregunta"
-        android:textColor="#04100F"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/txtPregunta"
-        android:layout_width="0dp"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
-        android:gravity="center"
-        android:text="@string/placeholder_Pregunta"
-        android:textColor="#04100F"
-        android:textSize="20sp"
+        android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtNumeroPregunta" />
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/txtNumeroPregunta"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:gravity="center_horizontal"
+            android:text="@string/placeholder_NumeroPregunta"
+            android:textColor="#04100F"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/txtPregunta"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginRight="16dp"
+            android:gravity="center_horizontal"
+            android:text="@string/placeholder_Pregunta"
+            android:textColor="#04100F"
+            android:textSize="20sp" />
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:id="@+id/img0"
+                    android:layout_width="128dp"
+                    android:layout_height="128dp"
+                    android:layout_marginLeft="52dp"
+                    android:layout_marginTop="52dp"
+                    android:contentDescription="@string/imagePlaceholderDescription"
+                    android:onClick="onImageViewClick" />
+
+                <ImageView
+                    android:id="@+id/img1"
+                    android:layout_width="128dp"
+                    android:layout_height="128dp"
+                    android:layout_marginLeft="52dp"
+                    android:layout_marginTop="52dp"
+                    android:contentDescription="@string/imagePlaceholderDescription"
+                    android:onClick="onImageViewClick" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:id="@+id/img2"
+                    android:layout_width="128dp"
+                    android:layout_height="128dp"
+                    android:layout_marginLeft="52dp"
+                    android:layout_marginTop="52dp"
+                    android:contentDescription="@string/imagePlaceholderDescription"
+                    android:onClick="onImageViewClick" />
+
+                <ImageView
+                    android:id="@+id/img3"
+                    android:layout_width="128dp"
+                    android:layout_height="128dp"
+                    android:layout_marginLeft="52dp"
+                    android:layout_marginTop="52dp"
+                    android:contentDescription="@string/imagePlaceholderDescription"
+                    android:onClick="onImageViewClick" />
+            </TableRow>
+
+        </TableLayout>
+
+    </LinearLayout>
 
     <Button
         android:id="@+id/btnReiniciar"
@@ -43,40 +100,20 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
-        android:layout_marginBottom="42dp"
+        android:layout_marginBottom="16dp"
         android:background="#E9C46A"
         android:drawableStart="@drawable/ic_baseline_loop_24"
         android:drawableLeft="@drawable/ic_baseline_loop_24"
         android:onClick="reiniciar"
         android:text="@string/stringReiniciar"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/img2"
-        app:layout_constraintVertical_bias="1.0" />
-
-    <Button
-        android:id="@+id/btnSiguiente"
-        android:layout_width="144dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
-        android:layout_marginBottom="42dp"
-        android:background="#E9C46A"
-        android:drawableStart="@drawable/ic_baseline_navigate_next_24"
-        android:drawableLeft="@drawable/ic_baseline_navigate_next_24"
-        android:onClick="continuar"
-        android:text="@string/stringSiguiente"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/img3"
-        app:layout_constraintVertical_bias="1.0" />
-
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/btnAyuda"
         android:layout_width="48dp"
         android:layout_height="48dp"
-        android:layout_marginBottom="42dp"
+        android:layout_marginBottom="16dp"
         android:background="#E9C46A"
         android:contentDescription="@string/imgAyuda"
         android:drawableStart="@drawable/ic_baseline_help_24"
@@ -87,59 +124,23 @@
         android:paddingRight="3dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/btnSiguiente"
-        app:layout_constraintStart_toEndOf="@+id/btnReiniciar"
-        app:layout_constraintTop_toBottomOf="@+id/img2"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintHorizontal_bias="0.488"
+        app:layout_constraintStart_toEndOf="@+id/btnReiniciar" />
 
-    <ImageView
-        android:id="@+id/img0"
-        android:layout_width="128dp"
-        android:layout_height="128dp"
-        android:layout_marginStart="52dp"
-        android:layout_marginLeft="52dp"
-        android:layout_marginTop="42dp"
-        android:contentDescription="@string/imagePlaceholderDescription"
-        android:onClick="onImageViewClick"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtPregunta"
-        tools:srcCompat="@tools:sample/avatars" />
+    <Button
+        android:id="@+id/btnSiguiente"
+        android:layout_width="144dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="16dp"
+        android:background="#E9C46A"
+        android:drawableStart="@drawable/ic_baseline_navigate_next_24"
+        android:drawableLeft="@drawable/ic_baseline_navigate_next_24"
+        android:onClick="continuar"
+        android:text="@string/stringSiguiente"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
-    <ImageView
-        android:id="@+id/img1"
-        android:layout_width="128dp"
-        android:layout_height="128dp"
-        android:layout_marginTop="42dp"
-        android:contentDescription="@string/imagePlaceholderDescription"
-        android:onClick="onImageViewClick"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/img0"
-        app:layout_constraintTop_toBottomOf="@+id/txtPregunta"
-        tools:srcCompat="@tools:sample/avatars" />
-
-    <ImageView
-        android:id="@+id/img2"
-        android:layout_width="128dp"
-        android:layout_height="128dp"
-        android:layout_marginTop="42dp"
-        android:contentDescription="@string/imagePlaceholderDescription"
-        android:onClick="onImageViewClick"
-        app:layout_constraintEnd_toStartOf="@+id/img3"
-        app:layout_constraintHorizontal_bias="0.504"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/img0"
-        tools:srcCompat="@tools:sample/avatars" />
-
-    <ImageView
-        android:id="@+id/img3"
-        android:layout_width="128dp"
-        android:layout_height="128dp"
-        android:layout_marginTop="42dp"
-        android:layout_marginEnd="52dp"
-        android:layout_marginRight="52dp"
-        android:contentDescription="@string/imagePlaceholderDescription"
-        android:onClick="onImageViewClick"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/img1"
-        tools:srcCompat="@tools:sample/avatars" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
