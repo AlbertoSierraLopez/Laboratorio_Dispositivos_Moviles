@@ -15,4 +15,7 @@
     <string name="txtPreguntaFinal">Pregunta Final</string>
     <string name="imgAyuda">Boton que lanza la ventana de ayuda con información sobre el juego</string>
     <string name="txtAyuda">Este juego va de contestar correctamente a 5 preguntas sobre historia universal\n\nLas preguntas correctas suman 3 puntos y las incorrectas restan 2.Puedes no responder a una pregunta si lo deseas, pero ten en cuenta que no puedes deshacer tus respuestas\n\nSuerte!</string>
+
+    <string name="hello_blank_fragment">Quiz de Historia Universal</string>
+    <string name="sComenzar">Comenzar</string>
 </resources>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/bienvenidaFragment">
+
+    <fragment
+        android:id="@+id/preguntaImagenFragment"
+        android:name="com.ldm.practica1.PreguntaImagenFragment"
+        android:label="PreguntaImagenFragment" >
+        <action
+            android:id="@+id/action_preguntaImagenFragment_to_preguntaTextoFragment"
+            app:destination="@id/preguntaTextoFragment" />
+        <action
+            android:id="@+id/action_preguntaImagenFragment_to_bienvenidaFragment"
+            app:destination="@id/bienvenidaFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/preguntaTextoFragment"
+        android:name="com.ldm.practica1.PreguntaTextoFragment"
+        android:label="PreguntaTextoFragment" >
+        <action
+            android:id="@+id/action_preguntaTextoFragment_to_preguntaImagenFragment"
+            app:destination="@id/preguntaImagenFragment" />
+        <action
+            android:id="@+id/action_preguntaTextoFragment_to_bienvenidaFragment"
+            app:destination="@id/bienvenidaFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/bienvenidaFragment"
+        android:name="com.ldm.practica1.BienvenidaFragment"
+        android:label="fragment_bienvenida"
+        tools:layout="@layout/fragment_bienvenida" >
+        <action
+            android:id="@+id/action_bienvenidaFragment_to_preguntaTextoFragment"
+            app:destination="@id/preguntaTextoFragment" />
+        <action
+            android:id="@+id/action_bienvenidaFragment_to_preguntaImagenFragment"
+            app:destination="@id/preguntaImagenFragment" />
+    </fragment>
+</navigation>
