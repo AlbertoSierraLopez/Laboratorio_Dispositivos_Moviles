@@ -16,13 +16,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
-        android:text="@string/hello_blank_fragment"
+        android:text="@string/txtBienvenida"
         android:textSize="36sp" />
 
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:contentDescription="@string/imgPartenonDescription"
         android:src="@drawable/partenon" />
 
     <Space
@@ -33,6 +34,6 @@
         android:id="@+id/btnComenzar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/sComenzar" />
+        android:text="@string/stringComenzar" />
 
 </LinearLayout>

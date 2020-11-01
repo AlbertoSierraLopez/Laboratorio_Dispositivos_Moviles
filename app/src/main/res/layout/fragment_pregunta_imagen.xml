@@ -52,17 +52,19 @@
                     android:id="@+id/img0"
                     android:layout_width="128dp"
                     android:layout_height="128dp"
-                    android:layout_marginLeft="52dp"
-                    android:layout_marginTop="52dp"
-                    android:contentDescription="@string/imagePlaceholderDescription" />
+                    android:layout_marginLeft="50dp"
+                    android:layout_marginTop="50dp"
+                    android:contentDescription="@string/imagePlaceholderDescription"
+                    android:layout_marginStart="50dp" />
 
                 <ImageView
                     android:id="@+id/img1"
                     android:layout_width="128dp"
                     android:layout_height="128dp"
-                    android:layout_marginLeft="52dp"
-                    android:layout_marginTop="52dp"
-                    android:contentDescription="@string/imagePlaceholderDescription" />
+                    android:layout_marginLeft="50dp"
+                    android:layout_marginTop="50dp"
+                    android:contentDescription="@string/imagePlaceholderDescription"
+                    android:layout_marginStart="50dp" />
             </TableRow>
 
             <TableRow
@@ -73,17 +75,19 @@
                     android:id="@+id/img2"
                     android:layout_width="128dp"
                     android:layout_height="128dp"
-                    android:layout_marginLeft="52dp"
-                    android:layout_marginTop="52dp"
-                    android:contentDescription="@string/imagePlaceholderDescription" />
+                    android:layout_marginLeft="50dp"
+                    android:layout_marginTop="50dp"
+                    android:contentDescription="@string/imagePlaceholderDescription"
+                    android:layout_marginStart="50dp" />
 
                 <ImageView
                     android:id="@+id/img3"
                     android:layout_width="128dp"
                     android:layout_height="128dp"
-                    android:layout_marginLeft="52dp"
-                    android:layout_marginTop="52dp"
-                    android:contentDescription="@string/imagePlaceholderDescription" />
+                    android:layout_marginLeft="50dp"
+                    android:layout_marginTop="50dp"
+                    android:contentDescription="@string/imagePlaceholderDescription"
+                    android:layout_marginStart="50dp" />
             </TableRow>
 
         </TableLayout>
