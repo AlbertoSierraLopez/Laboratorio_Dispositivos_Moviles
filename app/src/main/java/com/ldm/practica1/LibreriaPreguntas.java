@@ -17,31 +17,42 @@ public class LibreriaPreguntas {
             "¿Qué emperador romano legalizó el cristianismo y puso fin a la persecución de los cristianos?",
             "¿A qué filósofo griego se le atribuye la obra \"La República\"?",
             "¿Cuál es el nombre del primer humano en viajar al espacio?",
-            "¿En qué lugar nació este famoso estadista francés?"
+            "¿En qué lugar nació este famoso estadista francés?",
+            "¿Qué escudo de armas representa al antiguo Sacro Imperio Romano Germánico?"
     };
 
     private int[] imagenes = {
             R.drawable.constantino_i,
             0,
             0,
-            R.drawable.el_emperador_napoleon
+            R.drawable.el_emperador_napoleon,
+            0
     };
 
     private String[][] respuestas = {
             {"Constantino", "Adriano", "Trajano", "Nerón"},
             {"Aristóteles", "Ptolomeo", "Platón", "Sócrates"},
             {"Buzz Aldrin", "Yuri Gagarin", "Neil Armstrong", "Adriyan Nikolayev"},
-            {"Waterloo", "Milán", "Marsella", "Córcega"}
+            {"Waterloo", "Milán", "Marsella", "Córcega"},
+            // Las preguntas especiales en lugar de Strings tienen Integers casteados a Strings
+            {Integer.toString(R.drawable.escudo_bohemia), Integer.toString(R.drawable.escudo_sacro_imperio), Integer.toString(R.drawable.escudo_papal), Integer.toString(R.drawable.escudo_savoya)}
     };
 
     private int[] soluciones = {
             0,
             2,
             1,
-            3
+            3,
+            1
     };
 
-
+    private boolean[] especial = {
+            false,
+            false,
+            false,
+            false,
+            true
+    };
 
     public String getPregunta(int i) {
         return preguntas[i];
@@ -69,5 +80,9 @@ public class LibreriaPreguntas {
 
     public int getSolucion(int i) {
         return soluciones[i];
+    }
+
+    public boolean getEspecial(int i) {
+        return especial[i];
     }
 }
