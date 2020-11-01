@@ -6,14 +6,13 @@
     android:layout_height="match_parent"
     android:background="#EFFBF9"
     android:orientation="vertical"
-    tools:context=".PreguntaEspecialActivity">
+    tools:context=".PreguntaTextoFragment">
 
     <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
@@ -21,7 +20,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
-            android:gravity="center_horizontal"
+            android:gravity="center"
             android:text="@string/placeholder_NumeroPregunta"
             android:textColor="#04100F"
             android:textSize="18sp" />
@@ -35,63 +34,21 @@
             android:layout_marginTop="12dp"
             android:layout_marginEnd="16dp"
             android:layout_marginRight="16dp"
-            android:gravity="center_horizontal"
+            android:drawablePadding="5dp"
+            android:gravity="center"
             android:text="@string/placeholder_Pregunta"
             android:textColor="#04100F"
-            android:textSize="20sp" />
+            android:textSize="24sp" />
 
-        <TableLayout
+        <ListView
+            android:id="@+id/listViewRespuestas"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <ImageView
-                    android:id="@+id/img0"
-                    android:layout_width="128dp"
-                    android:layout_height="128dp"
-                    android:layout_marginLeft="52dp"
-                    android:layout_marginTop="52dp"
-                    android:contentDescription="@string/imagePlaceholderDescription"
-                    android:onClick="onImageViewClick" />
-
-                <ImageView
-                    android:id="@+id/img1"
-                    android:layout_width="128dp"
-                    android:layout_height="128dp"
-                    android:layout_marginLeft="52dp"
-                    android:layout_marginTop="52dp"
-                    android:contentDescription="@string/imagePlaceholderDescription"
-                    android:onClick="onImageViewClick" />
-            </TableRow>
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <ImageView
-                    android:id="@+id/img2"
-                    android:layout_width="128dp"
-                    android:layout_height="128dp"
-                    android:layout_marginLeft="52dp"
-                    android:layout_marginTop="52dp"
-                    android:contentDescription="@string/imagePlaceholderDescription"
-                    android:onClick="onImageViewClick" />
-
-                <ImageView
-                    android:id="@+id/img3"
-                    android:layout_width="128dp"
-                    android:layout_height="128dp"
-                    android:layout_marginLeft="52dp"
-                    android:layout_marginTop="52dp"
-                    android:contentDescription="@string/imagePlaceholderDescription"
-                    android:onClick="onImageViewClick" />
-            </TableRow>
-
-        </TableLayout>
-
+            android:layout_height="256dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginRight="16dp" />
     </LinearLayout>
 
     <Button
@@ -104,7 +61,6 @@
         android:background="#E9C46A"
         android:drawableStart="@drawable/ic_baseline_loop_24"
         android:drawableLeft="@drawable/ic_baseline_loop_24"
-        android:onClick="reiniciar"
         android:text="@string/stringReiniciar"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -119,7 +75,6 @@
         android:drawableStart="@drawable/ic_baseline_help_24"
         android:drawableLeft="@drawable/ic_baseline_help_24"
         android:gravity="center"
-        android:onClick="popupAyuda"
         android:paddingLeft="3dp"
         android:paddingRight="3dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -137,10 +92,8 @@
         android:background="#E9C46A"
         android:drawableStart="@drawable/ic_baseline_navigate_next_24"
         android:drawableLeft="@drawable/ic_baseline_navigate_next_24"
-        android:onClick="continuar"
         android:text="@string/stringSiguiente"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

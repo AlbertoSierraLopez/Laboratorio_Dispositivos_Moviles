@@ -9,7 +9,6 @@
         android:roundIcon="@drawable/partenon"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".PreguntaEspecialActivity"></activity>
         <activity android:name=".ResultadosActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
