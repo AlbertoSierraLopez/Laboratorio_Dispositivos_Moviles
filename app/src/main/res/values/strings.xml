@@ -17,4 +17,5 @@
     <string name="txtBienvenida">Quiz de Historia Universal</string>
     <string name="stringComenzar">Comenzar</string>
     <string name="txtAyuda">Este juego va de contestar correctamente a 5 preguntas sobre historia universal\n\nLas preguntas correctas suman 3 puntos y las incorrectas restan 2.\nPuedes no responder a una pregunta si lo deseas, pero ten en cuenta que no puedes deshacer tus respuestas\n\nSuerte!</string>
+    <string name="hintNombre">Introduce tu nombre</string>
 </resources>

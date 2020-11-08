@@ -8,13 +8,11 @@
     tools:context=".BienvenidaFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="80dp" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
         android:gravity="center_horizontal"
         android:text="@string/txtBienvenida"
         android:textSize="36sp" />
@@ -29,6 +27,16 @@
     <Space
         android:layout_width="match_parent"
         android:layout_height="40dp" />
+
+    <EditText
+        android:id="@+id/txtNombre"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:ems="10"
+        android:hint="@string/hintNombre"
+        android:autofillHints="true"
+        android:inputType="textPersonName" />
 
     <Button
         android:id="@+id/btnComenzar"

@@ -6,23 +6,9 @@
     app:startDestination="@id/bienvenidaFragment">
 
     <fragment
-        android:id="@+id/preguntaImagenFragment"
-        android:name="com.ldm.practica1.PreguntaImagenFragment"
-        android:label="PreguntaImagenFragment" >
-        <action
-            android:id="@+id/action_preguntaImagenFragment_to_preguntaTextoFragment"
-            app:destination="@id/preguntaTextoFragment" />
-        <action
-            android:id="@+id/action_preguntaImagenFragment_to_bienvenidaFragment"
-            app:destination="@id/bienvenidaFragment" />
-    </fragment>
-    <fragment
         android:id="@+id/preguntaTextoFragment"
         android:name="com.ldm.practica1.PreguntaTextoFragment"
         android:label="PreguntaTextoFragment" >
-        <action
-            android:id="@+id/action_preguntaTextoFragment_to_preguntaImagenFragment"
-            app:destination="@id/preguntaImagenFragment" />
         <action
             android:id="@+id/action_preguntaTextoFragment_to_bienvenidaFragment"
             app:destination="@id/bienvenidaFragment" />
@@ -35,8 +21,5 @@
         <action
             android:id="@+id/action_bienvenidaFragment_to_preguntaTextoFragment"
             app:destination="@id/preguntaTextoFragment" />
-        <action
-            android:id="@+id/action_bienvenidaFragment_to_preguntaImagenFragment"
-            app:destination="@id/preguntaImagenFragment" />
     </fragment>
 </navigation>

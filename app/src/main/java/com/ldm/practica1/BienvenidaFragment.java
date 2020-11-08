@@ -11,6 +11,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -28,6 +30,7 @@ public class BienvenidaFragment extends Fragment {
     private String mParam2;
 
     private Button comenzar;
+    private EditText txtNombre;
 
     private LibreriaPreguntas libreria = new LibreriaPreguntas();
 
@@ -69,13 +72,21 @@ public class BienvenidaFragment extends Fragment {
         // Inflate the layout for this fragment
         vista =  inflater.inflate(R.layout.fragment_bienvenida, container, false);
 
+        txtNombre = vista.findViewById(R.id.txtNombre);
+        // Rellenar el campo nombre con el último jugador para ahorrar tiempo y no tener que escribirlo cada vez
+        String ultimoJugador = ((MainActivity) getActivity()).getNombre();
+        txtNombre.setText(ultimoJugador);
+
         comenzar = vista.findViewById(R.id.btnComenzar);
         comenzar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (libreria.getEspecial(0)) {
-                    Navigation.findNavController(vista).navigate(R.id.preguntaImagenFragment);
+                String nombre = txtNombre.getText().toString();
+
+                if (nombre.equals("")) {
+                    Toast.makeText(getContext(), "Introduce un nombre", Toast.LENGTH_SHORT).show();
                 } else {
+                    ((MainActivity) getActivity()).setNombre(nombre);
                     Navigation.findNavController(vista).navigate(R.id.preguntaTextoFragment);
                 }
             }

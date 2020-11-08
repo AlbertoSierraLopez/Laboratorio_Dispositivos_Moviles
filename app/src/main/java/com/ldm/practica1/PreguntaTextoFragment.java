@@ -40,7 +40,7 @@ public class PreguntaTextoFragment extends Fragment implements AdapterView.OnIte
     private String mParam2;
 
     // Declaración de variables
-    private static final int NPREGUNTAS = 5;
+    private static final int NPREGUNTAS = 4;
 
     private TextView numeroPregunta;
     private TextView pregunta;
@@ -122,18 +122,15 @@ public class PreguntaTextoFragment extends Fragment implements AdapterView.OnIte
                 ((MainActivity) getActivity()).setContadorPreguntas(contadorPreguntas);
 
                 if (contadorPreguntas == NPREGUNTAS) {
+                    String nombre = ((MainActivity) getActivity()).getNombre();
+
                     Intent intentFinalizar = new Intent(getActivity(), ResultadosActivity.class);
                     // Además de llamar a la activity hay que pasarle el dato de la puntuación para que lo pueda mostrar allí
                     intentFinalizar.putExtra("puntuacionFinal", puntuacion);
+                    intentFinalizar.putExtra("nombre", nombre);
                     startActivity(intentFinalizar);
                 } else {
-                    // Si la siguiente pregunta es especial, hay que hacer un intent y seguir en otra activity
-                    if (libreria.getEspecial(contadorPreguntas)) {
-                        Navigation.findNavController(vista).navigate(R.id.preguntaImagenFragment);
-                    } else {
-                        // Si no, seguimos aquí
-                        cicloDeJuego();
-                    }
+                    cicloDeJuego();
                 }
             }
         });
@@ -178,17 +175,6 @@ public class PreguntaTextoFragment extends Fragment implements AdapterView.OnIte
         String sPregunta = getResources().getString(R.string.txtPregunta, contadorPreguntas + 1);   // String con valores variables que se rellenan ahora con el numero de la pregunta
         numeroPregunta.setText(sPregunta);
         pregunta.setText(libreria.getPregunta(contadorPreguntas));
-
-        // Cargar imagen si la hubiera
-        int idImagen = libreria.getImagen(contadorPreguntas);
-        // idImagen puede ser una imagen guardada en R o un 0, si es un 0 se borra la imagen que hubiese de la pregunta anterior
-        pregunta.setCompoundDrawablesWithIntrinsicBounds(idImagen, 0, 0, 0);
-        // El texto se pega a la derecha si hay una imagen o se centra si no la hay
-        if (idImagen != 0) {
-            pregunta.setGravity(Gravity.START);
-        } else {
-            pregunta.setGravity(Gravity.CENTER);
-        }
 
         // Cargar la lista de respuestas
         listaRespuestas = new ArrayList<>();

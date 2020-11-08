@@ -12,11 +12,11 @@
         android:id="@+id/txtFinal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="14dp"
         android:gravity="center"
         android:text="@string/stringFinal"
         android:textColor="#04100F"
-        android:textSize="40sp" />
+        android:textSize="36sp" />
 
     <TextView
         android:id="@+id/txtPuntuacion"
@@ -35,6 +35,13 @@
         android:gravity="center"
         android:textColor="#264653"
         android:textSize="32sp" />
+
+    <TextView
+        android:id="@+id/txtHighscore"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:gravity="center" />
 
     <ImageView
         android:id="@+id/imgPartenon"
