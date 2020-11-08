@@ -41,6 +41,9 @@ public class PreguntaTextoFragment extends Fragment implements AdapterView.OnIte
 
     // Declaración de variables
     private static final int NPREGUNTAS = 4;
+    private int contadorPreguntas = 0;
+    private int puntuacion = 0;
+    private String nombre;
 
     private TextView numeroPregunta;
     private TextView pregunta;
@@ -48,9 +51,6 @@ public class PreguntaTextoFragment extends Fragment implements AdapterView.OnIte
     private Button reiniciar;
     private Button ayuda;
     private Button siguiente;
-
-    private int contadorPreguntas;
-    private int puntuacion;
 
     List<String> listaRespuestas;
 
@@ -94,10 +94,6 @@ public class PreguntaTextoFragment extends Fragment implements AdapterView.OnIte
         // Inflate the layout for this fragment
         vista = inflater.inflate(R.layout.fragment_pregunta_texto, container, false);
 
-        // Recoger la información compartida
-        contadorPreguntas = ((MainActivity) getActivity()).getContadorPreguntas();
-        puntuacion = ((MainActivity) getActivity()).getPuntuacion();
-
         // Conectar la parte lógica con el diseño
         numeroPregunta = vista.findViewById(R.id.txtNumeroPregunta);
         pregunta = vista.findViewById(R.id.txtPregunta);
@@ -119,10 +115,9 @@ public class PreguntaTextoFragment extends Fragment implements AdapterView.OnIte
             public void onClick(View v) {
                 // El juego permite saltar preguntas sin responder
                 contadorPreguntas++;
-                ((MainActivity) getActivity()).setContadorPreguntas(contadorPreguntas);
 
                 if (contadorPreguntas == NPREGUNTAS) {
-                    String nombre = ((MainActivity) getActivity()).getNombre();
+                    nombre = ((MainActivity) getActivity()).getNombre();
 
                     Intent intentFinalizar = new Intent(getActivity(), ResultadosActivity.class);
                     // Además de llamar a la activity hay que pasarle el dato de la puntuación para que lo pueda mostrar allí
@@ -199,14 +194,12 @@ public class PreguntaTextoFragment extends Fragment implements AdapterView.OnIte
             toast.show();
 
             puntuacion += 3;
-            ((MainActivity) getActivity()).setPuntuacion(puntuacion);
         } else {
             Toast toast = Toast.makeText(getActivity(), "RESPUESTA INCORRECTA", Toast.LENGTH_LONG);
             toast.setGravity(Gravity.BOTTOM, 0, 180);
             toast.show();
 
             puntuacion -= 2;
-            ((MainActivity) getActivity()).setPuntuacion(puntuacion);
         }
 
         // Cambiar los colores de las respuestas para revelar la correcta

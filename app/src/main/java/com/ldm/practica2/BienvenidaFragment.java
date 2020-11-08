@@ -1,6 +1,8 @@
 package com.ldm.practica2;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -73,8 +75,10 @@ public class BienvenidaFragment extends Fragment {
         vista =  inflater.inflate(R.layout.fragment_bienvenida, container, false);
 
         txtNombre = vista.findViewById(R.id.txtNombre);
+
         // Rellenar el campo nombre con el último jugador para ahorrar tiempo y no tener que escribirlo cada vez
-        String ultimoJugador = ((MainActivity) getActivity()).getNombre();
+        SharedPreferences sp = getActivity().getSharedPreferences("lastplayer", Context.MODE_PRIVATE);
+        String ultimoJugador = sp.getString("ultimo", "");
         txtNombre.setText(ultimoJugador);
 
         comenzar = vista.findViewById(R.id.btnComenzar);
