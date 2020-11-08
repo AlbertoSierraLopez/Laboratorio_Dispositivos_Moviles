@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/preguntaTextoFragment"
-        android:name="com.ldm.practica1.PreguntaTextoFragment"
+        android:name="com.ldm.practica2.PreguntaTextoFragment"
         android:label="PreguntaTextoFragment" >
         <action
             android:id="@+id/action_preguntaTextoFragment_to_bienvenidaFragment"
@@ -15,7 +15,7 @@
     </fragment>
     <fragment
         android:id="@+id/bienvenidaFragment"
-        android:name="com.ldm.practica1.BienvenidaFragment"
+        android:name="com.ldm.practica2.BienvenidaFragment"
         android:label="fragment_bienvenida"
         tools:layout="@layout/fragment_bienvenida" >
         <action

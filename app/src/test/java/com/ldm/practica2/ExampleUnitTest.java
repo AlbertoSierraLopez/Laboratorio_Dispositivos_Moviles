@@ -1,4 +1,4 @@
-package com.ldm.practica1;
+package com.ldm.practica2;
 
 import org.junit.Test;
 
