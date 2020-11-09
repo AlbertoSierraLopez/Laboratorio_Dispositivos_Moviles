@@ -1,6 +1,8 @@
 package com.ldm.practica2;
 
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.os.Bundle;
 
@@ -54,7 +56,7 @@ public class PreguntaTextoFragment extends Fragment implements AdapterView.OnIte
 
     List<String> listaRespuestas;
 
-    private LibreriaPreguntas libreria = new LibreriaPreguntas();
+    private Cursor cursor;
 
     private View vista;
 
@@ -99,6 +101,13 @@ public class PreguntaTextoFragment extends Fragment implements AdapterView.OnIte
         pregunta = vista.findViewById(R.id.txtPregunta);
         listViewRespuestas = vista.findViewById(R.id.listViewRespuestas);
 
+        // Base de datos
+        AdminSQLiteOpenHelper admin = new AdminSQLiteOpenHelper(getContext(), "DBPreguntas", null, 1);
+        SQLiteDatabase db = admin.getReadableDatabase();
+        // Orden de las preguntas aleatorio
+        cursor = db.rawQuery("select * from preguntas order by random()", null);
+        cursor.moveToFirst();
+
         // Establecer los listeners para los botones
         reiniciar = vista.findViewById(R.id.btnReiniciar);
         reiniciar.setOnClickListener(new View.OnClickListener() {
@@ -115,6 +124,9 @@ public class PreguntaTextoFragment extends Fragment implements AdapterView.OnIte
             public void onClick(View v) {
                 // El juego permite saltar preguntas sin responder
                 contadorPreguntas++;
+
+                // Seleccionar siguiente pregunta
+                cursor.moveToNext();
 
                 if (contadorPreguntas == NPREGUNTAS) {
                     nombre = ((MainActivity) getActivity()).getNombre();
@@ -169,14 +181,14 @@ public class PreguntaTextoFragment extends Fragment implements AdapterView.OnIte
         // Mostrar pregunta
         String sPregunta = getResources().getString(R.string.txtPregunta, contadorPreguntas + 1);   // String con valores variables que se rellenan ahora con el numero de la pregunta
         numeroPregunta.setText(sPregunta);
-        pregunta.setText(libreria.getPregunta(contadorPreguntas));
+        pregunta.setText(cursor.getString(1));
 
         // Cargar la lista de respuestas
         listaRespuestas = new ArrayList<>();
-        listaRespuestas.add(libreria.getRespuesta0(contadorPreguntas));
-        listaRespuestas.add(libreria.getRespuesta1(contadorPreguntas));
-        listaRespuestas.add(libreria.getRespuesta2(contadorPreguntas));
-        listaRespuestas.add(libreria.getRespuesta3(contadorPreguntas));
+        listaRespuestas.add(cursor.getString(2));
+        listaRespuestas.add(cursor.getString(3));
+        listaRespuestas.add(cursor.getString(4));
+        listaRespuestas.add(cursor.getString(5));
 
         // Configurar el adaptador para mostrar las respuestas
         ArrayAdapter<String> adaptadorListaRespuestas = new ArrayAdapter<>(this.getContext(), android.R.layout.simple_list_item_1, listaRespuestas);
@@ -187,7 +199,9 @@ public class PreguntaTextoFragment extends Fragment implements AdapterView.OnIte
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        if (position == libreria.getSolucion(contadorPreguntas)) {
+        int solucion = cursor.getInt(6);
+
+        if (position == solucion) {
             Toast toast = Toast.makeText(getActivity(), "RESPUESTA CORRECTA", Toast.LENGTH_LONG);
             // Quiero que el toast aparezca encima de los botones para que no moleste
             toast.setGravity(Gravity.BOTTOM, 0, 180);
@@ -204,7 +218,7 @@ public class PreguntaTextoFragment extends Fragment implements AdapterView.OnIte
 
         // Cambiar los colores de las respuestas para revelar la correcta
         for (int i = 0; i < listViewRespuestas.getChildCount(); i++) {
-            if (i == libreria.getSolucion(contadorPreguntas)) {
+            if (i == solucion) {
                 listViewRespuestas.getChildAt(i).setBackgroundColor(Color.parseColor("#A2D2FF"));
             } else {
                 listViewRespuestas.getChildAt(i).setBackgroundColor(Color.parseColor("#FFAFCC"));

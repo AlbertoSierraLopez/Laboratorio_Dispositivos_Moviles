@@ -34,8 +34,6 @@ public class BienvenidaFragment extends Fragment {
     private Button comenzar;
     private EditText txtNombre;
 
-    private LibreriaPreguntas libreria = new LibreriaPreguntas();
-
     private View vista;
 
     public BienvenidaFragment() {
