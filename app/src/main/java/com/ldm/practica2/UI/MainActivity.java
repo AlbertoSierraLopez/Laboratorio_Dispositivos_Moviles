@@ -28,7 +28,6 @@ public class MainActivity extends AppCompatActivity  {
         db.execSQL("delete from " + Constants.DATABASE_TABLE_NAME);
 
         ContentValues entrada1 = new ContentValues();
-        entrada1.put("codigo", 1);
         entrada1.put("pregunta", "¿Qué emperador romano legalizó el cristianismo y puso fin a la persecución de los cristianos?");
         entrada1.put("respuesta0", "Constantino");
         entrada1.put("respuesta1", "Adriano");
@@ -38,7 +37,6 @@ public class MainActivity extends AppCompatActivity  {
         db.insert(Constants.DATABASE_TABLE_NAME, null, entrada1);
 
         ContentValues entrada2 = new ContentValues();
-        entrada2.put("codigo", 2);
         entrada2.put("pregunta", "¿A qué filósofo griego se le atribuye la obra \"La República\"?");
         entrada2.put("respuesta0", "Aristóteles");
         entrada2.put("respuesta1", "Ptolomeo");
@@ -48,7 +46,6 @@ public class MainActivity extends AppCompatActivity  {
         db.insert(Constants.DATABASE_TABLE_NAME, null, entrada2);
 
         ContentValues entrada3 = new ContentValues();
-        entrada3.put("codigo", 3);
         entrada3.put("pregunta", "¿Cuál es el nombre del primer humano en viajar al espacio?");
         entrada3.put("respuesta0", "Buzz Aldrin");
         entrada3.put("respuesta1", "Yuri Gagarin");
@@ -58,7 +55,6 @@ public class MainActivity extends AppCompatActivity  {
         db.insert(Constants.DATABASE_TABLE_NAME, null, entrada3);
 
         ContentValues entrada4 = new ContentValues();
-        entrada4.put("codigo", 4);
         entrada4.put("pregunta", "¿En qué lugar nació Napoleón Bonaparte?");
         entrada4.put("respuesta0", "Waterloo");
         entrada4.put("respuesta1", "Milán");
