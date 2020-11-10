@@ -9,8 +9,8 @@
         android:roundIcon="@drawable/partenon"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ResultadosActivity" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".UI.ResultadosActivity" />
+        <activity android:name=".UI.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

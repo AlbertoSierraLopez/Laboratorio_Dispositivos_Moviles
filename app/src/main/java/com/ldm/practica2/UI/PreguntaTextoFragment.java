@@ -1,4 +1,4 @@
-package com.ldm.practica2;
+package com.ldm.practica2.UI;
 
 import android.content.Intent;
 import android.database.Cursor;
@@ -7,7 +7,6 @@ import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
-import androidx.navigation.Navigation;
 
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -22,6 +21,10 @@ import android.widget.ListView;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.ldm.practica2.Constants.Constants;
+import com.ldm.practica2.Database.AdminSQLiteOpenHelper;
+import com.ldm.practica2.R;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,7 +45,6 @@ public class PreguntaTextoFragment extends Fragment implements AdapterView.OnIte
     private String mParam2;
 
     // Declaración de variables
-    private static final int NPREGUNTAS = 4;
     private int contadorPreguntas = 0;
     private int puntuacion = 0;
     private String nombre;
@@ -102,10 +104,10 @@ public class PreguntaTextoFragment extends Fragment implements AdapterView.OnIte
         listViewRespuestas = vista.findViewById(R.id.listViewRespuestas);
 
         // Base de datos
-        AdminSQLiteOpenHelper admin = new AdminSQLiteOpenHelper(getContext(), "DBPreguntas", null, 1);
+        AdminSQLiteOpenHelper admin = new AdminSQLiteOpenHelper(getContext(), Constants.DATABASE_NAME, null, 1);
         SQLiteDatabase db = admin.getReadableDatabase();
         // Orden de las preguntas aleatorio
-        cursor = db.rawQuery("select * from preguntas order by random()", null);
+        cursor = db.rawQuery("select * from " + Constants.DATABASE_TABLE_NAME + " order by random()", null);
         cursor.moveToFirst();
 
         // Establecer los listeners para los botones
@@ -128,7 +130,7 @@ public class PreguntaTextoFragment extends Fragment implements AdapterView.OnIte
                 // Seleccionar siguiente pregunta
                 cursor.moveToNext();
 
-                if (contadorPreguntas == NPREGUNTAS) {
+                if (contadorPreguntas == Constants.N_PREGUNTAS) {
                     nombre = ((MainActivity) getActivity()).getNombre();
 
                     Intent intentFinalizar = new Intent(getActivity(), ResultadosActivity.class);

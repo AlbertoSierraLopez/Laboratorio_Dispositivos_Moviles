@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="#EFFBF9"
     android:orientation="vertical"
-    tools:context=".PreguntaTextoFragment">
+    tools:context=".UI.PreguntaTextoFragment">
 
     <LinearLayout
         android:id="@+id/linearLayout"

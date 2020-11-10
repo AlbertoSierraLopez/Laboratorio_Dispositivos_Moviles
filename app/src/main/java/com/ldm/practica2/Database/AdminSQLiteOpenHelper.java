@@ -1,4 +1,4 @@
-package com.ldm.practica2;
+package com.ldm.practica2.Database;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
