@@ -26,17 +26,18 @@ public class MainActivity extends AppCompatActivity  {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // En teoría este proceso sólo sería necesario la primera vez que ejecutamos la aplicación:
         // Copiar el fichero db al almacenamiento interno del telefono
         String appDataPath = getApplicationInfo().dataDir;
 
-        // Asegurar que el directorio /databases existe
+        // Asegurar que el directorio /databases existe en el telefono
         File dbFolder = new File(appDataPath + "/databases");
         dbFolder.mkdir();
 
-        // Crear archivo
+        // Crear archivo en el telefono
         File dbFilePath = new File(appDataPath + "/databases/DBPreguntas.db");
 
-        // Volcar contenido del archivo en assets al telefono
+        // Volcar contenido de la base de datos al telefono
         try {
             InputStream inputStream = getAssets().open("DBPreguntas.db");
             OutputStream outputStream = new FileOutputStream(dbFilePath);
