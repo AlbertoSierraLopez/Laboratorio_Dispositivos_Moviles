@@ -23,7 +23,7 @@
             android:gravity="center"
             android:text="@string/placeholder_NumeroPregunta"
             android:textColor="#04100F"
-            android:textSize="18sp" />
+            android:textSize="22sp" />
 
         <TextView
             android:id="@+id/txtPregunta"
@@ -38,7 +38,7 @@
             android:gravity="center"
             android:text="@string/placeholder_Pregunta"
             android:textColor="#04100F"
-            android:textSize="24sp" />
+            android:textSize="28sp" />
 
         <ListView
             android:id="@+id/listViewRespuestas"

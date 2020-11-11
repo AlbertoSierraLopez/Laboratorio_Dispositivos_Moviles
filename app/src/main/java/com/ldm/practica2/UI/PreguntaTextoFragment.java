@@ -8,6 +8,7 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -193,7 +194,22 @@ public class PreguntaTextoFragment extends Fragment implements AdapterView.OnIte
         listaRespuestas.add(cursor.getString(5));
 
         // Configurar el adaptador para mostrar las respuestas
-        ArrayAdapter<String> adaptadorListaRespuestas = new ArrayAdapter<>(this.getContext(), android.R.layout.simple_list_item_1, listaRespuestas);
+        ArrayAdapter<String> adaptadorListaRespuestas = new ArrayAdapter<String>(this.getContext(), android.R.layout.simple_list_item_1, listaRespuestas) {
+            // Esto sirve para cambiar el layout de los elementos individuales del listview:
+            @Override
+            public View getView(int position, View convertView, ViewGroup parent) {
+                /// Coger el elemento del listview
+                View view = super.getView(position, convertView, parent);
+
+                TextView tv = (TextView) view.findViewById(android.R.id.text1);
+
+                // Tamaño del texto
+                tv.setTextSize(TypedValue.COMPLEX_UNIT_DIP,26);
+
+                // Return the view
+                return view;
+            }
+        };
         listViewRespuestas.setAdapter(adaptadorListaRespuestas);
         listViewRespuestas.setOnItemClickListener(this);
         listViewRespuestas.setEnabled(true);    // Esto activa de nuevo el listView en caso de que hubiese sido desactivado
