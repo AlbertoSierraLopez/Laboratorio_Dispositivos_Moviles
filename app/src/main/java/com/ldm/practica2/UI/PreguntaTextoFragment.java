@@ -5,6 +5,8 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.media.AudioManager;
+import android.media.SoundPool;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -62,6 +64,11 @@ public class PreguntaTextoFragment extends Fragment implements AdapterView.OnIte
 
     private Cursor cursor;
 
+    private SoundPool spAcierto;
+    private SoundPool spFallo;
+    private int sonidoAcierto;
+    private int sonidoFallo;
+
     private View vista;
 
     public PreguntaTextoFragment() {
@@ -104,6 +111,13 @@ public class PreguntaTextoFragment extends Fragment implements AdapterView.OnIte
         numeroPregunta = vista.findViewById(R.id.txtNumeroPregunta);
         pregunta = vista.findViewById(R.id.txtPregunta);
         listViewRespuestas = vista.findViewById(R.id.listViewRespuestas);
+
+        // Cargar los sonidos
+        spAcierto = new SoundPool(1, AudioManager.STREAM_MUSIC, 1);
+        sonidoAcierto = spAcierto.load(getContext(), R.raw.correct, 1);
+
+        spFallo = new SoundPool(1, AudioManager.STREAM_MUSIC, 1);
+        sonidoFallo = spFallo.load(getContext(), R.raw.wrong, 1);
 
         // Base de datos
         AdminSQLiteOpenHelper admin = new AdminSQLiteOpenHelper(getContext(), Constants.DATABASE_NAME, null, 1);
@@ -221,15 +235,20 @@ public class PreguntaTextoFragment extends Fragment implements AdapterView.OnIte
         int solucion = cursor.getInt(6);
 
         if (position == solucion) {
+            // Sonido acierto
+            spAcierto.play(sonidoAcierto, 1, 1, 1, 0, 0);
+            // Mensaje acierto
             Toast toast = Toast.makeText(getActivity(), "RESPUESTA CORRECTA", Toast.LENGTH_LONG);
-            // Quiero que el toast aparezca encima de los botones para que no moleste
-            toast.setGravity(Gravity.BOTTOM, 0, 180);
+            toast.setGravity(Gravity.BOTTOM, 0, 180);   // Quiero que el toast aparezca encima de los botones para que no moleste
             toast.show();
 
             puntuacion += 3;
         } else {
+            // Sonido fallo
+            spFallo.play(sonidoFallo, 1, 1, 1, 0, 0);
+            // Mensaje fallo
             Toast toast = Toast.makeText(getActivity(), "RESPUESTA INCORRECTA", Toast.LENGTH_LONG);
-            toast.setGravity(Gravity.BOTTOM, 0, 180);
+            toast.setGravity(Gravity.BOTTOM, 0, 180);   // Quiero que el toast aparezca encima de los botones para que no moleste
             toast.show();
 
             puntuacion -= 2;
