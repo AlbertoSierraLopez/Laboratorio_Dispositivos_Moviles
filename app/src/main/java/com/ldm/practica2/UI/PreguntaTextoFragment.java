@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -212,7 +213,7 @@ public class PreguntaTextoFragment extends Fragment implements AdapterView.OnIte
         };
         listViewRespuestas.setAdapter(adaptadorListaRespuestas);
         listViewRespuestas.setOnItemClickListener(this);
-        listViewRespuestas.setEnabled(true);    // Esto activa de nuevo el listView en caso de que hubiese sido desactivado
+        listViewRespuestas.setEnabled(true);    // Esto activa de nuevo el listView en caso de que hubiese sido desactivado en la pregunta anterior
     }
 
     @Override
