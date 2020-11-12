@@ -2,13 +2,8 @@ package com.ldm.practica2.UI;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.ContentValues;
-import android.content.Context;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 
-import com.ldm.practica2.Constants.Constants;
-import com.ldm.practica2.Database.AdminSQLiteOpenHelper;
 import com.ldm.practica2.R;
 
 import java.io.File;
@@ -26,8 +21,8 @@ public class MainActivity extends AppCompatActivity  {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // En teoría este proceso sólo sería necesario la primera vez que ejecutamos la aplicación:
         // Copiar el fichero db al almacenamiento interno del telefono
+        // En teoría este proceso sólo sería necesario la primera vez que ejecutamos la aplicación:
         String appDataPath = getApplicationInfo().dataDir;
 
         // Asegurar que el directorio /databases existe en el telefono
@@ -62,4 +57,5 @@ public class MainActivity extends AppCompatActivity  {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
+
 }

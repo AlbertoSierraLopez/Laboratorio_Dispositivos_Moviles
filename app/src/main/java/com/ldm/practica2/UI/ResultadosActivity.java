@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
@@ -21,10 +22,16 @@ public class ResultadosActivity extends AppCompatActivity {
     private int puntuacion;
     private String nombre;
 
+    private MediaPlayer melodia;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_resultados);
+
+        // Reproducir melodía final
+        melodia = MediaPlayer.create(this, R.raw.victory_fanfare);
+        melodia.start();
 
         // Conectar la parte lógica con el diseño
         txtResultado = findViewById(R.id.txtResultado);
@@ -57,6 +64,8 @@ public class ResultadosActivity extends AppCompatActivity {
     }
 
     public void reiniciar(View v) {
+        melodia.stop(); // Que deje de sonar la música cuando ya no estás en el menú del final de la partida
+
         Intent intentReiniciar = new Intent(this, MainActivity.class);
         startActivity(intentReiniciar);
     }
@@ -67,6 +76,8 @@ public class ResultadosActivity extends AppCompatActivity {
     }
 
     public void compartir(View v) {
+        melodia.stop(); // Que deje de sonar la música cuando ya no estás en el menú del final de la partida
+
         Intent intentCompartir = new Intent();
         intentCompartir.setAction(Intent.ACTION_SEND);
         intentCompartir.putExtra(Intent.EXTRA_TEXT, "He conseguido una puntuación de " + puntuacion + " en Quiz de Historia Universal.");

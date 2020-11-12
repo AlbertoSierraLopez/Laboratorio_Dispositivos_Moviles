@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
-import android.graphics.Typeface;
 import android.media.AudioManager;
 import android.media.SoundPool;
 import android.os.Bundle;
