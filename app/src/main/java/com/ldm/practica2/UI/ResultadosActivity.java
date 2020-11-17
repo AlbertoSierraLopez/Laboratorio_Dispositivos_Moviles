@@ -26,6 +26,11 @@ public class ResultadosActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        // Personalizar action bar
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setIcon(R.mipmap.ic_launcher);
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_resultados);
 

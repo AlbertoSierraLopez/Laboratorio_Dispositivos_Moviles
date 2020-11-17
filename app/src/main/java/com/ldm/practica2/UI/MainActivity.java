@@ -21,6 +21,10 @@ public class MainActivity extends AppCompatActivity  {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // Personalizar action bar
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setIcon(R.mipmap.ic_launcher);
+
         // Copiar el fichero db al almacenamiento interno del telefono
         // En teoría este proceso sólo sería necesario la primera vez que ejecutamos la aplicación:
         String appDataPath = getApplicationInfo().dataDir;
