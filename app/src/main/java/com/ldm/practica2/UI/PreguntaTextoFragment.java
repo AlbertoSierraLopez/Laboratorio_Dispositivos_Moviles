@@ -5,6 +5,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.media.AudioManager;
+import android.media.MediaPlayer;
 import android.media.SoundPool;
 import android.os.Bundle;
 
@@ -67,6 +68,7 @@ public class PreguntaTextoFragment extends Fragment implements AdapterView.OnIte
     private SoundPool spFallo;
     private int sonidoAcierto;
     private int sonidoFallo;
+    private MediaPlayer musica;
 
     private View vista;
 
@@ -111,11 +113,16 @@ public class PreguntaTextoFragment extends Fragment implements AdapterView.OnIte
         pregunta = vista.findViewById(R.id.txtPregunta);
         listViewRespuestas = vista.findViewById(R.id.listViewRespuestas);
 
+        // Activar música
+        musica = MediaPlayer.create(getContext(), R.raw.greek_music);
+        musica.setLooping(true);
+        musica.start();
+
         // Cargar los sonidos
-        spAcierto = new SoundPool(1, AudioManager.STREAM_MUSIC, 1);
+        spAcierto = new SoundPool(5, AudioManager.STREAM_MUSIC, 1);
         sonidoAcierto = spAcierto.load(getContext(), R.raw.correct, 1);
 
-        spFallo = new SoundPool(1, AudioManager.STREAM_MUSIC, 1);
+        spFallo = new SoundPool(5, AudioManager.STREAM_MUSIC, 1);
         sonidoFallo = spFallo.load(getContext(), R.raw.wrong, 1);
 
         // Base de datos
@@ -147,6 +154,8 @@ public class PreguntaTextoFragment extends Fragment implements AdapterView.OnIte
 
                 if (contadorPreguntas == Constants.N_PREGUNTAS) {
                     nombre = ((MainActivity) getActivity()).getNombre();
+
+                    musica.stop();
 
                     Intent intentFinalizar = new Intent(getActivity(), ResultadosActivity.class);
                     // Además de llamar a la activity hay que pasarle el dato de la puntuación para que lo pueda mostrar allí
