@@ -115,7 +115,7 @@ public class PreguntaContrarrelojFragment extends Fragment implements AdapterVie
         countdownText = vista.findViewById(R.id.countdownText);
 
         // Activar música
-        musica = MediaPlayer.create(getContext(), R.raw.tense_loop);
+        musica = MediaPlayer.create(getContext(), R.raw.tense_loop);    // Música tensa, esto es serio
         musica.setLooping(true);
         musica.start();
 
@@ -133,12 +133,14 @@ public class PreguntaContrarrelojFragment extends Fragment implements AdapterVie
         cursor = db.rawQuery("select * from " + Constants.DATABASE_TABLE_NAME + " order by random()", null);
         cursor.moveToFirst();
 
-        // Cargar el count down pero no lanzarlo
+        // Cargar el count down pero NO lanzarlo
+        // Se cuentan atrás 10 segundos (10000 milisegundos) y se establece un intervalo de 1 segundo entre ticks
         countDown = new CountDownTimer(10000, 1000) {
+            // A cada tick, se actualiza el texto del layout con la cuenta atrás en rojo para informar al jugador
             public void onTick(long millisUntilFinished) {
                 countdownText.setText("" + millisUntilFinished / 1000);
             }
-
+            // Cuando el contador llega a 0 se lanza un click sobre el botón siguiente (con lo que ello conlleva)
             public void onFinish() {
                 siguiente.performClick();
             }
@@ -161,13 +163,13 @@ public class PreguntaContrarrelojFragment extends Fragment implements AdapterVie
         siguiente.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // Hay que detener el contador de la pregunta anterior para que no haga clicks inesperados
+                countDown.cancel(); // Se para el contador
+
                 // El juego permite saltar preguntas sin responder
                 contadorPreguntas++;
 
-                // Se para el contador
-                countDown.cancel();
-
-                // Pero resta puntos si no contestas en este modo de juego
+                // En este modo de juego dejar una pregunta en blanco resta 1 punto
                 if (!contestada) {
                     puntuacion -= 1;
                 }
@@ -231,16 +233,19 @@ public class PreguntaContrarrelojFragment extends Fragment implements AdapterVie
         listViewRespuestas.setOnItemClickListener(this);
         listViewRespuestas.setEnabled(true);    // Esto activa de nuevo el listView en caso de que hubiese sido desactivado en la pregunta anterior
 
-        // Marcar pregunta como no contestada
+        // Marcar esta nueva pregunta como no-contestada
         contestada = false;
 
-        // Comienza la cuenta atrás
-        countDown.start();
+        // Una vez mostrada la pregunta y las respuestas:
+        countDown.start();  // Comienza la cuenta atrás
     }
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         int solucion = cursor.getInt(6);
+
+        // Marcar la pregunta como contestada (nunca se aplicarán dos modificaciones a la puntuación en una misma pregunta)
+        contestada = true;
 
         if (position == solucion) {
             // Sonido acierto
@@ -270,9 +275,6 @@ public class PreguntaContrarrelojFragment extends Fragment implements AdapterVie
                 listViewRespuestas.getChildAt(i).setBackgroundColor(Color.parseColor("#FFAFCC"));
             }
         }
-
-        // Marcar la respuesta como contestada
-        contestada = true;
 
         // Solo se puede responder una vez
         listViewRespuestas.setEnabled(false);   // Desactiva el listView para no responder múltiples veces a la misma pregunta y ganar puntos extra
