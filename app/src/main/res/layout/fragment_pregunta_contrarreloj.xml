@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/colorBackground"
     android:orientation="vertical"
-    tools:context=".UI.PreguntaTextoFragment">
+    tools:context=".UI.PreguntaContrarrelojFragment">
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -58,26 +58,13 @@
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
         android:layout_marginBottom="16dp"
-        android:background="@color/colorAccent"
+        android:background="@color/colorAlternative"
+        android:textColor="@color/colorBackground"
         android:drawableStart="@drawable/ic_baseline_loop_24"
         android:drawableLeft="@drawable/ic_baseline_loop_24"
         android:text="@string/stringReiniciar"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
-
-    <Button
-        android:id="@+id/btnVolumen"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:layout_marginBottom="16dp"
-        android:background="@drawable/ic_baseline_volume_off_24"
-        android:gravity="center"
-        android:paddingLeft="3dp"
-        android:paddingRight="3dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/btnSiguiente"
-        app:layout_constraintHorizontal_bias="0.488"
-        app:layout_constraintStart_toEndOf="@+id/btnReiniciar" />
 
     <Button
         android:id="@+id/btnSiguiente"
@@ -86,7 +73,8 @@
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
         android:layout_marginBottom="16dp"
-        android:background="@color/colorAccent"
+        android:background="@color/colorAlternative"
+        android:textColor="@color/colorBackground"
         android:drawableStart="@drawable/ic_baseline_navigate_next_24"
         android:drawableLeft="@drawable/ic_baseline_navigate_next_24"
         android:text="@string/stringSiguiente"

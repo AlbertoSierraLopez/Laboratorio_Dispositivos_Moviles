@@ -21,5 +21,17 @@
         <action
             android:id="@+id/action_bienvenidaFragment_to_preguntaTextoFragment"
             app:destination="@id/preguntaTextoFragment" />
+        <action
+            android:id="@+id/action_bienvenidaFragment_to_preguntaContrarreloj"
+            app:destination="@id/preguntaContrarrelojFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/preguntaContrarrelojFragment"
+        android:name="com.ldm.practica2.UI.PreguntaContrarrelojFragment"
+        android:label="fragment_pregunta_contrarreloj"
+        tools:layout="@layout/fragment_pregunta_contrarreloj" >
+        <action
+            android:id="@+id/action_preguntaContrarreloj_to_bienvenidaFragment"
+            app:destination="@id/bienvenidaFragment" />
     </fragment>
 </navigation>

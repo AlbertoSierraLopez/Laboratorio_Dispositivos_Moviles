@@ -6,6 +6,7 @@
     android:background="@color/colorPrimaryDark">
 
     <TextView
+        android:id="@+id/txtWindow"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
@@ -15,8 +16,8 @@
         android:layout_marginEnd="30dp"
         android:layout_marginRight="30dp"
         android:layout_marginBottom="30dp"
-        android:textColor="#EFFBF9"
         android:text="@string/txtAyuda"
+        android:textColor="#EFFBF9"
         android:textSize="20sp" />
 
 </RelativeLayout>

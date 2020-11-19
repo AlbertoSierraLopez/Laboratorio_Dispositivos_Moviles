@@ -14,15 +14,12 @@ import androidx.fragment.app.Fragment;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -33,14 +30,12 @@ import com.ldm.practica2.R;
 import java.util.ArrayList;
 import java.util.List;
 
-import static android.content.Context.LAYOUT_INFLATER_SERVICE;
-
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link PreguntaTextoFragment#newInstance} factory method to
+ * Use the {@link PreguntaContrarrelojFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class PreguntaTextoFragment extends Fragment implements AdapterView.OnItemClickListener {
+public class PreguntaContrarrelojFragment extends Fragment implements AdapterView.OnItemClickListener {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
@@ -52,6 +47,7 @@ public class PreguntaTextoFragment extends Fragment implements AdapterView.OnIte
     private int contadorPreguntas = 0;
     private int puntuacion = 0;
     private String nombre;
+    private boolean contestada;
 
     private TextView numeroPregunta;
     private TextView pregunta;
@@ -72,7 +68,7 @@ public class PreguntaTextoFragment extends Fragment implements AdapterView.OnIte
 
     private View vista;
 
-    public PreguntaTextoFragment() {
+    public PreguntaContrarrelojFragment() {
         // Required empty public constructor
     }
 
@@ -82,10 +78,10 @@ public class PreguntaTextoFragment extends Fragment implements AdapterView.OnIte
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment PreguntaTextoFragment.
+     * @return A new instance of fragment PreguntaContrarrelojFragment.
      */
-    public static PreguntaTextoFragment newInstance(String param1, String param2) {
-        PreguntaTextoFragment fragment = new PreguntaTextoFragment();
+    public static PreguntaContrarrelojFragment newInstance(String param1, String param2) {
+        PreguntaContrarrelojFragment fragment = new PreguntaContrarrelojFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -106,7 +102,7 @@ public class PreguntaTextoFragment extends Fragment implements AdapterView.OnIte
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        vista = inflater.inflate(R.layout.fragment_pregunta_texto, container, false);
+        vista = inflater.inflate(R.layout.fragment_pregunta_contrarreloj, container, false);
 
         // Conectar la parte lógica con el diseño
         numeroPregunta = vista.findViewById(R.id.txtNumeroPregunta);
@@ -114,7 +110,7 @@ public class PreguntaTextoFragment extends Fragment implements AdapterView.OnIte
         listViewRespuestas = vista.findViewById(R.id.listViewRespuestas);
 
         // Activar música
-        musica = MediaPlayer.create(getContext(), R.raw.greek_music);
+        musica = MediaPlayer.create(getContext(), R.raw.tense_loop);
         musica.setLooping(true);
         musica.start();
 
@@ -151,6 +147,11 @@ public class PreguntaTextoFragment extends Fragment implements AdapterView.OnIte
                 // El juego permite saltar preguntas sin responder
                 contadorPreguntas++;
 
+                // Pero resta puntos si no contestas en este modo de juego
+                if (!contestada) {
+                    puntuacion -= 1;
+                }
+
                 // Seleccionar siguiente pregunta
                 cursor.moveToNext();
 
@@ -166,20 +167,6 @@ public class PreguntaTextoFragment extends Fragment implements AdapterView.OnIte
                     startActivity(intentFinalizar);
                 } else {
                     cicloDeJuego();
-                }
-            }
-        });
-
-        volumen = vista.findViewById(R.id.btnVolumen);
-        volumen.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (musica.isPlaying()) {
-                    musica.pause();
-                    volumen.setBackgroundResource(R.drawable.ic_baseline_volume_off_24);
-                } else {
-                    musica.start();
-                    volumen.setBackgroundResource(R.drawable.ic_baseline_volume_up_24);
                 }
             }
         });
@@ -223,6 +210,9 @@ public class PreguntaTextoFragment extends Fragment implements AdapterView.OnIte
         listViewRespuestas.setAdapter(adaptadorListaRespuestas);
         listViewRespuestas.setOnItemClickListener(this);
         listViewRespuestas.setEnabled(true);    // Esto activa de nuevo el listView en caso de que hubiese sido desactivado en la pregunta anterior
+
+        // Marcar pregunta como no contestada
+        contestada = false;
     }
 
     @Override
@@ -237,7 +227,7 @@ public class PreguntaTextoFragment extends Fragment implements AdapterView.OnIte
             toast.setGravity(Gravity.BOTTOM, 0, 180);   // Quiero que el toast aparezca encima de los botones para que no moleste
             toast.show();
 
-            puntuacion += 3;
+            puntuacion += 6;
         } else {
             // Sonido fallo
             spFallo.play(sonidoFallo, 1, 1, 1, 0, 0);
@@ -246,7 +236,7 @@ public class PreguntaTextoFragment extends Fragment implements AdapterView.OnIte
             toast.setGravity(Gravity.BOTTOM, 0, 180);   // Quiero que el toast aparezca encima de los botones para que no moleste
             toast.show();
 
-            puntuacion -= 2;
+            puntuacion -= 3;
         }
 
         // Cambiar los colores de las respuestas para revelar la correcta
@@ -257,6 +247,9 @@ public class PreguntaTextoFragment extends Fragment implements AdapterView.OnIte
                 listViewRespuestas.getChildAt(i).setBackgroundColor(Color.parseColor("#FFAFCC"));
             }
         }
+
+        // Marcar la respuesta como contestada
+        contestada = true;
 
         // Solo se puede responder una vez
         listViewRespuestas.setEnabled(false);   // Desactiva el listView para no responder múltiples veces a la misma pregunta y ganar puntos extra
