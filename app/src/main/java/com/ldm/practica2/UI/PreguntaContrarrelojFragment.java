@@ -11,6 +11,7 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.os.CountDownTimer;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -55,6 +56,7 @@ public class PreguntaContrarrelojFragment extends Fragment implements AdapterVie
     private Button reiniciar;
     private Button volumen;
     private Button siguiente;
+    private TextView countdownText;
 
     List<String> listaRespuestas;
 
@@ -65,6 +67,8 @@ public class PreguntaContrarrelojFragment extends Fragment implements AdapterVie
     private int sonidoAcierto;
     private int sonidoFallo;
     private MediaPlayer musica;
+
+    CountDownTimer countDown;
 
     private View vista;
 
@@ -108,6 +112,7 @@ public class PreguntaContrarrelojFragment extends Fragment implements AdapterVie
         numeroPregunta = vista.findViewById(R.id.txtNumeroPregunta);
         pregunta = vista.findViewById(R.id.txtPregunta);
         listViewRespuestas = vista.findViewById(R.id.listViewRespuestas);
+        countdownText = vista.findViewById(R.id.countdownText);
 
         // Activar música
         musica = MediaPlayer.create(getContext(), R.raw.tense_loop);
@@ -128,6 +133,18 @@ public class PreguntaContrarrelojFragment extends Fragment implements AdapterVie
         cursor = db.rawQuery("select * from " + Constants.DATABASE_TABLE_NAME + " order by random()", null);
         cursor.moveToFirst();
 
+        // Cargar el count down pero no lanzarlo
+        countDown = new CountDownTimer(10000, 1000) {
+            public void onTick(long millisUntilFinished) {
+                countdownText.setText("" + millisUntilFinished / 1000);
+            }
+
+            public void onFinish() {
+                siguiente.performClick();
+            }
+
+        };
+
         // Establecer los listeners para los botones
         reiniciar = vista.findViewById(R.id.btnReiniciar);
         reiniciar.setOnClickListener(new View.OnClickListener() {
@@ -146,6 +163,9 @@ public class PreguntaContrarrelojFragment extends Fragment implements AdapterVie
             public void onClick(View v) {
                 // El juego permite saltar preguntas sin responder
                 contadorPreguntas++;
+
+                // Se para el contador
+                countDown.cancel();
 
                 // Pero resta puntos si no contestas en este modo de juego
                 if (!contestada) {
@@ -213,6 +233,9 @@ public class PreguntaContrarrelojFragment extends Fragment implements AdapterVie
 
         // Marcar pregunta como no contestada
         contestada = false;
+
+        // Comienza la cuenta atrás
+        countDown.start();
     }
 
     @Override
