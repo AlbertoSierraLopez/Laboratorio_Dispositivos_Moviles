@@ -29,6 +29,7 @@ import com.ldm.practica2.Database.AdminSQLiteOpenHelper;
 import com.ldm.practica2.R;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -211,6 +212,8 @@ public class PreguntaContrarrelojFragment extends Fragment implements AdapterVie
         listaRespuestas.add(cursor.getString(3));
         listaRespuestas.add(cursor.getString(4));
         listaRespuestas.add(cursor.getString(5));
+        // Orden aleatorio de respuestas
+        Collections.shuffle(listaRespuestas);
 
         // Configurar el adaptador para mostrar las respuestas
         ArrayAdapter<String> adaptadorListaRespuestas = new ArrayAdapter<String>(this.getContext(), android.R.layout.simple_list_item_1, listaRespuestas) {
@@ -242,12 +245,12 @@ public class PreguntaContrarrelojFragment extends Fragment implements AdapterVie
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        int solucion = cursor.getInt(6);
+        String solucion = cursor.getString(6);
 
         // Marcar la pregunta como contestada (nunca se aplicarán dos modificaciones a la puntuación en una misma pregunta)
         contestada = true;
 
-        if (position == solucion) {
+        if (listaRespuestas.get(position).equals(solucion)) {
             // Sonido acierto
             spAcierto.play(sonidoAcierto, 1, 1, 1, 0, 0);
             // Mensaje acierto
@@ -269,7 +272,7 @@ public class PreguntaContrarrelojFragment extends Fragment implements AdapterVie
 
         // Cambiar los colores de las respuestas para revelar la correcta
         for (int i = 0; i < listViewRespuestas.getChildCount(); i++) {
-            if (i == solucion) {
+            if (listaRespuestas.get(i).equals(solucion)) {
                 listViewRespuestas.getChildAt(i).setBackgroundColor(Color.parseColor("#A2D2FF"));
             } else {
                 listViewRespuestas.getChildAt(i).setBackgroundColor(Color.parseColor("#FFAFCC"));
