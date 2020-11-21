@@ -8,7 +8,8 @@
     <fragment
         android:id="@+id/preguntaTextoFragment"
         android:name="com.ldm.practica2.UI.PreguntaTextoFragment"
-        android:label="PreguntaTextoFragment" >
+        android:label="PreguntaTextoFragment"
+        tools:layout="@layout/fragment_pregunta_texto">
         <action
             android:id="@+id/action_preguntaTextoFragment_to_bienvenidaFragment"
             app:destination="@id/bienvenidaFragment" />
