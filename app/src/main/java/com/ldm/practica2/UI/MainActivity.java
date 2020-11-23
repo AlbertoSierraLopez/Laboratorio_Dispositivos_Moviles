@@ -2,7 +2,6 @@ package com.ldm.practica2.UI;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.media.MediaPlayer;
 import android.os.Bundle;
 
 import com.ldm.practica2.R;

@@ -70,7 +70,7 @@
         android:layout_width="48dp"
         android:layout_height="48dp"
         android:layout_marginBottom="16dp"
-        android:background="@drawable/ic_baseline_volume_off_24"
+        android:background="@drawable/ic_baseline_volume_up_24"
         android:gravity="center"
         android:paddingLeft="3dp"
         android:paddingRight="3dp"
