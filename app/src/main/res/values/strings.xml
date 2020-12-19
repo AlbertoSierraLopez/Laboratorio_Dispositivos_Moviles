@@ -1,22 +1,3 @@
 <resources>
-    <string name="app_name">Quiz de Historia Universal</string>
-    <string name="stringReiniciar">Reiniciar</string>
-    <string name="stringSiguiente">Siguiente</string>
-    <string name="stringFinal">El test ha acabado</string>
-    <string name="radioCompartir">Comparte tu resultado</string>
-    <string name="radioReiniciar">Volver a jugar</string>
-    <string name="radioSalir">Salir</string>
-    <string name="placeholder_Pregunta">¿Sabías que esta pregunta es un placeholder?</string>
-    <string name="placeholder_NumeroPregunta">Pregunta 0</string>
-    <string name="imgPartenonDescription">Un icono del Partenón de Atenas</string>
-    <string name="txtPuntuacion">Tu puntuación:</string>
-    <string name="txtPregunta">Pregunta %d</string>
-    <string name="txtPreguntaFinal">Pregunta Final</string>
-    <string name="imgAyuda">Boton que lanza la ventana de ayuda con información sobre el juego</string>
-    <string name="txtBienvenida">Quiz de Historia Universal</string>
-    <string name="stringComenzar">Comenzar</string>
-    <string name="stringComenzarContrarreloj">Contrarreloj</string>
-    <string name="txtAyuda">Este juego va de contestar correctamente a 5 preguntas sobre historia universal\n\nLas preguntas correctas suman 3 puntos y las incorrectas restan 2.\nPuedes no responder a una pregunta si lo deseas, pero ten en cuenta que no puedes deshacer tus respuestas\n\nSuerte!</string>
-    <string name="txtAyudaContrarreloj">En este modo las reglas cambian, tienes muy poco tiempo para contestar a las preguntas que aparecen\n\nLos errores se penalizan más y no contestar también te resta puntos, pero los aciertos valen el doble\n\nTe atreves?</string>
-    <string name="hintNombre">Introduce tu nombre</string>
+    <string name="app_name">EjemploJuegoPiratas</string>
 </resources>
