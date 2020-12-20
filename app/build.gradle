@@ -5,7 +5,7 @@ android {
     buildToolsVersion "30.0.2"
 
     defaultConfig {
-        applicationId "com.ldm.ejemplojuegopiratas"
+        applicationId "com.ldm.practica3"
         minSdkVersion 16
         targetSdkVersion 30
         versionCode 1
