@@ -146,8 +146,8 @@ public class PantallaJuego extends Pantalla {
 
     private void drawWorld(Mazmorra mazmorra) {
         Graficos g = juego.getGraphics();
-        Monstruos jollyroger = mazmorra.monstruos;
-        Esqueleto head = jollyroger.partes.get(0);
+        Monstruos monstruos = mazmorra.monstruos;
+        Esqueleto head = monstruos.partes.get(0);
         Alma alma = mazmorra.alma;
 
 
@@ -160,10 +160,10 @@ public class PantallaJuego extends Pantalla {
         int y = alma.y * 32;
         g.drawPixmap(stainPixmapAlma, x, y);
 
-        int len = jollyroger.partes.size();
+        int len = monstruos.partes.size();
         for (int i = 1; i < len; i++) {
             Pixmap stainPixmapEsqueleto = null;
-            Esqueleto part = jollyroger.partes.get(i);
+            Esqueleto part = monstruos.partes.get(i);
             if (part.tipo == Esqueleto.TIPO_1)
                 stainPixmapEsqueleto = Assets.esqueleto1;
             if (part.tipo == Esqueleto.TIPO_2)
@@ -176,13 +176,13 @@ public class PantallaJuego extends Pantalla {
         }
 
         Pixmap headPixmap = null;
-        if (jollyroger.direccion == Monstruos.ARRIBA)
+        if (monstruos.direccion == Monstruos.ARRIBA)
             headPixmap = Assets.vampiroarriba;
-        if (jollyroger.direccion == Monstruos.IZQUIERDA)
+        if (monstruos.direccion == Monstruos.IZQUIERDA)
             headPixmap = Assets.vampiroizquierda;
-        if (jollyroger.direccion == Monstruos.ABAJO)
+        if (monstruos.direccion == Monstruos.ABAJO)
             headPixmap = Assets.vampiroabajo;
-        if (jollyroger.direccion == Monstruos.DERECHA)
+        if (monstruos.direccion == Monstruos.DERECHA)
             headPixmap = Assets.vampiroderecha;
         x = head.x * 32 + 16;
         y = head.y * 32 + 16;

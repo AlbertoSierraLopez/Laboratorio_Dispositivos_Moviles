@@ -3,8 +3,8 @@ package com.ldm.practica3.juego;
 import java.util.Random;
 
 public class Mazmorra {
-    static final int MUNDO_ANCHO = 10;
-    static final int MUNDO_ALTO = 13;
+    static final int MAZMORRA_ANCHO = 10;
+    static final int MAZMORRA_ALTO = 13;
     static final int INCREMENTO_PUNTUACION = 10;
     static final float TICK_INICIAL = 0.5f;
     static final float TICK_DECREMENTO = 0.05f;
@@ -14,7 +14,7 @@ public class Mazmorra {
     public boolean finalJuego = false;
     public int puntuacion = 0;
 
-    boolean campos[][] = new boolean[MUNDO_ANCHO][MUNDO_ALTO];
+    boolean campos[][] = new boolean[MAZMORRA_ANCHO][MAZMORRA_ALTO];
     Random random = new Random();
     float tiempoTick = 0;
     static float tick = TICK_INICIAL;
@@ -25,8 +25,8 @@ public class Mazmorra {
     }
 
     private void colocarAlma() {
-        for (int x = 0; x < MUNDO_ANCHO; x++) {
-            for (int y = 0; y < MUNDO_ALTO; y++) {
+        for (int x = 0; x < MAZMORRA_ANCHO; x++) {
+            for (int y = 0; y < MAZMORRA_ALTO; y++) {
                 campos[x][y] = false;
             }
         }
@@ -37,21 +37,21 @@ public class Mazmorra {
             campos[parte.x][parte.y] = true;
         }
 
-        int botinX = random.nextInt(MUNDO_ANCHO);
-        int botinY = random.nextInt(MUNDO_ALTO);
+        int almaX = random.nextInt(MAZMORRA_ANCHO);
+        int almaY = random.nextInt(MAZMORRA_ALTO);
         while (true) {
-            if (campos[botinX][botinY] == false)
+            if (campos[almaX][almaY] == false)
                 break;
-            botinX += 1;
-            if (botinX >= MUNDO_ANCHO) {
-                botinX = 0;
-                botinY += 1;
-                if (botinY >= MUNDO_ALTO) {
-                    botinY = 0;
+            almaX += 1;
+            if (almaX >= MAZMORRA_ANCHO) {
+                almaX = 0;
+                almaY += 1;
+                if (almaY >= MAZMORRA_ALTO) {
+                    almaY = 0;
                 }
             }
         }
-        alma = new Alma(botinX, botinY, random.nextInt(2));
+        alma = new Alma(almaX, almaY, random.nextInt(2));
     }
 
     public void update(float deltaTime) {
@@ -73,7 +73,7 @@ public class Mazmorra {
             if (vampiro.x == alma.x && vampiro.y == alma.y) {
                 puntuacion += INCREMENTO_PUNTUACION;
                 monstruos.abordaje();
-                if (monstruos.partes.size() == MUNDO_ANCHO * MUNDO_ALTO) {
+                if (monstruos.partes.size() == MAZMORRA_ANCHO * MAZMORRA_ALTO) {
                     finalJuego = true;
                     return;
                 } else {

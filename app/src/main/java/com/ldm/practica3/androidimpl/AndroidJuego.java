@@ -53,7 +53,7 @@ public abstract class AndroidJuego extends Activity implements Juego {
         setContentView(renderView);
 
         PowerManager powerManager = (PowerManager) getSystemService(Context.POWER_SERVICE);
-        wakeLock = powerManager.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "JuegoPiratas:GLGame");
+        wakeLock = powerManager.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "Vampire:GLGame");
     }
 
     @Override
