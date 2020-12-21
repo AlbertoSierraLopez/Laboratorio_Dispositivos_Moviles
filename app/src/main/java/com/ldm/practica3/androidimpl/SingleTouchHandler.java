@@ -11,6 +11,8 @@ import com.ldm.practica3.Input.TouchEvent;
 import com.ldm.practica3.Pool.PoolObjectFactory;
 
 public class SingleTouchHandler implements TouchHandler {
+    private static int OFFSET = 48;
+
     boolean isTouched;
     int touchX;
     int touchY;
@@ -55,7 +57,7 @@ public class SingleTouchHandler implements TouchHandler {
             }
 
             touchEvent.x = touchX = (int)(event.getX() * scaleX);
-            touchEvent.y = touchY = (int)(event.getY() * scaleY);
+            touchEvent.y = touchY = (int)(event.getY() * scaleY) + OFFSET;
             touchEventsBuffer.add(touchEvent);
 
             return true;

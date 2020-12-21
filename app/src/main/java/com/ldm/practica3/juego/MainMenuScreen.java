@@ -27,7 +27,7 @@ public class MainMenuScreen extends Pantalla {
                         Assets.cursor.play(1);
                     }
                 }
-                if (inBounds(event, 64, 220, 208, 42) ) {
+                if (inBounds(event, 100, 246, 208, 42) ) {
                     juego.setScreen(new PantallaJuego(juego));
                     if (Configuraciones.sonidoHabilitado) {
                         Assets.cursor.play(1);
@@ -35,14 +35,14 @@ public class MainMenuScreen extends Pantalla {
 
                     return;
                 }
-                if (inBounds(event, 64, 220 + 42, 256, 42) ) {
+                if (inBounds(event, 64, 246 + 42, 256, 42) ) {
                     juego.setScreen(new PantallaMaximasPuntuaciones(juego));
                     if (Configuraciones.sonidoHabilitado) {
                         Assets.cursor.play(1);
                     }
                     return;
                 }
-                if (inBounds(event, 64, 220 + 84, 228, 42) ) {
+                if (inBounds(event, 90, 246 + 84, 208, 42) ) {
                     juego.setScreen(new PantallaAyuda(juego));
                     if (Configuraciones.sonidoHabilitado) {
                         Assets.cursor.play(1);

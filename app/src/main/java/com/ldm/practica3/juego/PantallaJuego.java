@@ -54,7 +54,7 @@ public class PantallaJuego extends Pantalla {
         for (int i = 0; i < len; i++) {
             TouchEvent event = touchEvents.get(i);
             if (event.type == TouchEvent.TOUCH_UP) {
-                if (event.x < 64 && event.y < 64) {
+                if (event.x < 64 && event.y < 106) {
                     if (Configuraciones.sonidoHabilitado)
                         Assets.cursor.play(1);
                     estado = EstadoJuego.Pausado;
@@ -90,14 +90,14 @@ public class PantallaJuego extends Pantalla {
         for (int i = 0; i < len; i++) {
             TouchEvent event = touchEvents.get(i);
             if (event.type == TouchEvent.TOUCH_UP) {
-                if (event.x > 80 && event.x <= 240) {
-                    if (event.y > 100 && event.y <= 148) {
+                if (event.x > 72 && event.x <= 240) {
+                    if (event.y > 146 && event.y < 170) {
                         if (Configuraciones.sonidoHabilitado)
                             Assets.cursor.play(1);
                         estado = EstadoJuego.Ejecutandose;
                         return;
                     }
-                    if (event.y > 148 && event.y < 196) {
+                    if (event.y > 180 && event.y < 205) {
                         if (Configuraciones.sonidoHabilitado)
                             Assets.cursor.play(1);
                         juego.setScreen(new MainMenuScreen(juego));

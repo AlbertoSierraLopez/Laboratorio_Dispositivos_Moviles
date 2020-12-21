@@ -12,6 +12,8 @@ import com.ldm.practica3.Pool.PoolObjectFactory;
 
 
 public class MultiTouchHandler implements TouchHandler {
+    private static int OFFSET = 48;
+
     boolean[] isTouched = new boolean[20];
     int[] touchX = new int[20];
     int[] touchY = new int[20];
@@ -52,7 +54,7 @@ public class MultiTouchHandler implements TouchHandler {
                     touchEvent.x = touchX[pointerId] = (int) (event
                             .getX(pointerIndex) * scaleX);
                     touchEvent.y = touchY[pointerId] = (int) (event
-                            .getY(pointerIndex) * scaleY);
+                            .getY(pointerIndex) * scaleY) + OFFSET;
                     isTouched[pointerId] = true;
                     touchEventsBuffer.add(touchEvent);
 
@@ -69,7 +71,7 @@ public class MultiTouchHandler implements TouchHandler {
                     touchEvent.x = touchX[pointerId] = (int) (event
                             .getX(pointerIndex) * scaleX);
                     touchEvent.y = touchY[pointerId] = (int) (event
-                            .getY(pointerIndex) * scaleY);
+                            .getY(pointerIndex) * scaleY) + OFFSET;
                     isTouched[pointerId] = false;
                     touchEventsBuffer.add(touchEvent);
                     break;
@@ -86,7 +88,7 @@ public class MultiTouchHandler implements TouchHandler {
                         touchEvent.x = touchX[pointerId] = (int) (event
                                 .getX(pointerIndex) * scaleX);
                         touchEvent.y = touchY[pointerId] = (int) (event
-                                .getY(pointerIndex) * scaleY);
+                                .getY(pointerIndex) * scaleY) + OFFSET;
                         touchEventsBuffer.add(touchEvent);
                     }
                     break;
