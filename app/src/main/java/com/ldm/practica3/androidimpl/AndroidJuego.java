@@ -10,6 +10,8 @@ import android.os.PowerManager;
 import android.os.PowerManager.WakeLock;
 import android.view.WindowManager;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.ldm.practica3.Audio;
 import com.ldm.practica3.FileIO;
 import com.ldm.practica3.Juego;
@@ -18,7 +20,7 @@ import com.ldm.practica3.Input;
 import com.ldm.practica3.Pantalla;
 import com.ldm.practica3.juego.R;
 
-public abstract class AndroidJuego extends Activity implements Juego {
+public abstract class AndroidJuego extends AppCompatActivity implements Juego {
     AndroidFastRenderView renderView;
     Graficos graficos;
     Audio audio;
@@ -30,6 +32,7 @@ public abstract class AndroidJuego extends Activity implements Juego {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_main);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 

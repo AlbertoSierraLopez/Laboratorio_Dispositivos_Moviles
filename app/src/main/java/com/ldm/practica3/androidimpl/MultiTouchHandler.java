@@ -55,6 +55,9 @@ public class MultiTouchHandler implements TouchHandler {
                             .getY(pointerIndex) * scaleY);
                     isTouched[pointerId] = true;
                     touchEventsBuffer.add(touchEvent);
+
+                    // PARA DEBUG
+                    System.out.println("--> x: " + touchEvent.x + ", y: " + touchEvent.y);
                     break;
 
                 case MotionEvent.ACTION_UP:
