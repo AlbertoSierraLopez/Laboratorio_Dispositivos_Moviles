@@ -50,6 +50,12 @@ public class PantallaJuego extends Pantalla {
     }
 
     private void updateRunning(List<TouchEvent> touchEvents, float deltaTime) {
+        // Suena la música
+        if (Configuraciones.sonidoHabilitado) {
+            Assets.ambiente.play();
+            Assets.ambiente.setLooping(true);
+        }
+
         int len = touchEvents.size();
         for (int i = 0; i < len; i++) {
             TouchEvent event = touchEvents.get(i);
@@ -86,21 +92,31 @@ public class PantallaJuego extends Pantalla {
     }
 
     private void updatePaused(List<TouchEvent> touchEvents) {
+        // Para la música
+        if (Configuraciones.sonidoHabilitado && Assets.ambiente.isPlaying()) {
+            Assets.ambiente.pause();
+        }
+
         int len = touchEvents.size();
         for (int i = 0; i < len; i++) {
             TouchEvent event = touchEvents.get(i);
             if (event.type == TouchEvent.TOUCH_UP) {
                 if (event.x > 72 && event.x <= 240) {
                     if (event.y > 146 && event.y < 170) {
-                        if (Configuraciones.sonidoHabilitado)
+                        if (Configuraciones.sonidoHabilitado) {
                             Assets.cursor.play(1);
+                        }
                         estado = EstadoJuego.Ejecutandose;
                         return;
                     }
                     if (event.y > 180 && event.y < 205) {
-                        if (Configuraciones.sonidoHabilitado)
+                        if (Configuraciones.sonidoHabilitado) {
                             Assets.cursor.play(1);
+                            // Fuera la música
+                            Assets.ambiente.stop();
+                        }
                         juego.setScreen(new MainMenuScreen(juego));
+
                         return;
                     }
                 }
@@ -109,6 +125,11 @@ public class PantallaJuego extends Pantalla {
     }
 
     private void updateGameOver(List<TouchEvent> touchEvents) {
+        // Fuera la música
+        if (Configuraciones.sonidoHabilitado) {
+            Assets.ambiente.stop();
+        }
+
         int len = touchEvents.size();
         for (int i = 0; i < len; i++) {
             TouchEvent event = touchEvents.get(i);
