@@ -122,6 +122,24 @@ public class AndroidGraficos implements Graficos {
         canvas.drawBitmap(((AndroidPixmap)pixmap).bitmap, x, y, null);
     }
 
+    public void drawTransparentPixmap(Pixmap pixmap, int x, int y, int srcX, int srcY,
+                           int srcWidth, int srcHeight) {
+        srcRect.left = srcX;
+        srcRect.top = srcY;
+        srcRect.right = srcX + srcWidth - 1;
+        srcRect.bottom = srcY + srcHeight - 1;
+
+        dstRect.left = x;
+        dstRect.top = y;
+        dstRect.right = x + srcWidth - 1;
+        dstRect.bottom = y + srcHeight - 1;
+
+        // Dibujar con transparencia
+        paint.setAlpha(50);
+        canvas.drawBitmap(((AndroidPixmap) pixmap).bitmap, srcRect, dstRect, paint);
+        paint.setAlpha(100);
+    }
+
     @Override
     public int getWidth() {
         return frameBuffer.getWidth();

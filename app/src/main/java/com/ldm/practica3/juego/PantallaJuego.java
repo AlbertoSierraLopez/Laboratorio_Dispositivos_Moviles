@@ -236,7 +236,7 @@ public class PantallaJuego extends Pantalla {
     private void drawRunningUI() {
         Graficos g = juego.getGraphics();
 
-        g.drawPixmap(Assets.botones, 0, 0, 0, 128, 64, 64);
+        g.drawTransparentPixmap(Assets.botones, 0, 0, 0, 128, 64, 64);
         g.drawLine(0, 416, 480, 416, Color.BLACK);
         g.drawPixmap(Assets.botones, 0, 416, 64, 64, 64, 64);
         g.drawPixmap(Assets.botones, 256, 416, 0, 64, 64, 64);

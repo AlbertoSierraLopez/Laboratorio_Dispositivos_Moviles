@@ -20,6 +20,9 @@ public interface Graficos {
 
     public void drawPixmap(Pixmap pixmap, int x, int y);
 
+    public void drawTransparentPixmap(Pixmap pixmap, int x, int y, int srcX, int srcY,
+                                      int srcWidth, int srcHeight);
+
     public int getWidth();
 
     public int getHeight();
