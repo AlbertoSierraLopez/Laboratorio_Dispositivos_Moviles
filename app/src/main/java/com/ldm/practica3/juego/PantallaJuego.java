@@ -170,17 +170,32 @@ public class PantallaJuego extends Pantalla {
         Monstruos monstruos = mazmorra.monstruos;
         Esqueleto head = monstruos.partes.get(0);
         Alma alma = mazmorra.alma;
+        Sacerdote sacerdote = mazmorra.sacerdote;
+        int x, y;
 
-
+        // Dibujar Alma
         Pixmap stainPixmapAlma = null;
         if (alma.tipo== Alma.TIPO_1)
             stainPixmapAlma = Assets.alma1;
         if (alma.tipo == Alma.TIPO_2)
             stainPixmapAlma = Assets.alma2;
-        int x = alma.x * 32;
-        int y = alma.y * 32;
+        x = alma.x * 32;
+        y = alma.y * 32;
         g.drawPixmap(stainPixmapAlma, x, y);
 
+        // Dibujar Sacerdote
+        Pixmap stainPixmapSacerdote = null;
+        if (sacerdote.tipo== sacerdote.TIPO_1)
+            stainPixmapSacerdote = Assets.sacerdote1;
+        if (sacerdote.tipo == sacerdote.TIPO_2)
+            stainPixmapSacerdote = Assets.sacerdote2;
+        if (sacerdote.tipo == sacerdote.TIPO_3)
+            stainPixmapSacerdote = Assets.sacerdote3;
+        x = sacerdote.x * 32;
+        y = sacerdote.y * 32;
+        g.drawPixmap(stainPixmapSacerdote, x, y);
+
+        // Dibujar Séquito de Esqueletos
         int len = monstruos.partes.size();
         for (int i = 1; i < len; i++) {
             Pixmap stainPixmapEsqueleto = null;
@@ -196,6 +211,7 @@ public class PantallaJuego extends Pantalla {
             g.drawPixmap(stainPixmapEsqueleto, x, y);
         }
 
+        // Dibujar Vampiro
         Pixmap headPixmap = null;
         if (monstruos.direccion == Monstruos.ARRIBA)
             headPixmap = Assets.vampiroarriba;
