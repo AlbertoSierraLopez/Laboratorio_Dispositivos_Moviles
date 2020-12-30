@@ -119,5 +119,24 @@ public class Mazmorra {
             }
         }
     }
+
+    // Comprueba si hay algún objeto en la esquina superior izquierda para poner el botón de pausa transparente y poder verlo
+    public boolean esquinaOcupada() {
+        boolean ocupado = false;
+
+        int i = 0;
+        while (!ocupado && i <= 4) {
+            int j = 0;
+            while (!ocupado && j <= 4) {
+                if (campos[i][j]) {
+                    ocupado = true;
+                }
+                j++;
+            }
+            i++;
+        }
+
+        return ocupado;
+    }
 }
 
