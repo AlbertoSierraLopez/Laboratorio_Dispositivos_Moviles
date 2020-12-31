@@ -22,23 +22,24 @@ public class Mazmorra {
 
     public Mazmorra() {
         monstruos = new Monstruos();
-        colocarAlmaYSacerdote();
-    }
 
-    private void colocarAlmaYSacerdote() {
-        // Inicializar el tablero
+        // Inicializar el tablero a false en todas las casillas
         for (int x = 0; x < MAZMORRA_ANCHO; x++) {
             for (int y = 0; y < MAZMORRA_ALTO; y++) {
                 campos[x][y] = false;
             }
         }
-
+        // Poner las casillas de los esqueletos a true
         int len = monstruos.partes.size();
         for (int i = 0; i < len; i++) {
             Esqueleto parte = monstruos.partes.get(i);
             campos[parte.x][parte.y] = true;
         }
 
+        colocarAlmaYSacerdote();
+    }
+
+    private void colocarAlmaYSacerdote() {
         // Colocar Alma
         int almaX = random.nextInt(MAZMORRA_ANCHO);
         int almaY = random.nextInt(MAZMORRA_ALTO);
@@ -84,9 +85,15 @@ public class Mazmorra {
 
         while (tiempoTick > tick) {
             tiempoTick -= tick;
+            Esqueleto ultimo = monstruos.partes.get(monstruos.partes.size()-1);
 
             // Avanzar
             monstruos.avance();
+
+            // Actualizar la matriz campos tras cada desplazamiento
+            campos[ultimo.x][ultimo.y] = false;
+            Esqueleto vampiro = monstruos.partes.get(0);
+            campos[vampiro.x][vampiro.y] = true;
 
             // Comprobar si el vampiro se choca con sus esqueletos
             if (monstruos.comprobarChoque()) {
@@ -94,12 +101,16 @@ public class Mazmorra {
                 return;
             }
 
-            Esqueleto vampiro = monstruos.partes.get(0);
-
             // Comprobar si el vampiro absorbe un alma
             if (vampiro.x == alma.x && vampiro.y == alma.y) {
                 puntuacion += INCREMENTO_PUNTUACION;
                 monstruos.abordaje();
+
+                // Se actualiza la matriz campos
+                campos[ultimo.x][ultimo.y] = true;  // Se genera un nuevo esqueleto en el lugar del último así que se vuelve a ocupar ese lugar
+                campos[alma.x][alma.y] = false;
+                campos[sacerdote.x][sacerdote.y] = false;
+
                 if (monstruos.partes.size() == MAZMORRA_ANCHO * MAZMORRA_ALTO) {
                     finalJuego = true;
                     return;
@@ -125,9 +136,9 @@ public class Mazmorra {
         boolean ocupado = false;
 
         int i = 0;
-        while (!ocupado && i <= 4) {
+        while (!ocupado && i < 2) {
             int j = 0;
-            while (!ocupado && j <= 4) {
+            while (!ocupado && j < 2) {
                 if (campos[i][j]) {
                     ocupado = true;
                 }
