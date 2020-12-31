@@ -2,6 +2,8 @@ package com.ldm.practica3.juego;
 
 import java.util.Random;
 
+import static java.lang.Math.abs;
+
 public class Mazmorra {
     static final int MAZMORRA_ANCHO = 10;
     static final int MAZMORRA_ALTO = 13;
@@ -61,11 +63,11 @@ public class Mazmorra {
         // Colocar Sacerdote
         int sacerdoteX = random.nextInt(MAZMORRA_ANCHO);
         int sacerdoteY = random.nextInt(MAZMORRA_ALTO);
-
-        while (true) {
-            if (campos[sacerdoteX][sacerdoteY] == false)
+        Esqueleto vampiro = monstruos.partes.get(0);
+        int i = 0;
+        while (i < MAZMORRA_ANCHO * MAZMORRA_ALTO) {    // No probar eternamente
+            if (campos[sacerdoteX][sacerdoteY] == false && !cerca(sacerdoteX, sacerdoteY, vampiro))    // Los sacerdotes no aparecen justo al lado del vampiro para evitar injusticias
                 break;
-
             sacerdoteX += 1;
             if (sacerdoteX >= MAZMORRA_ANCHO) {
                 sacerdoteX = 0;
@@ -74,9 +76,18 @@ public class Mazmorra {
                     sacerdoteY = 0;
                 }
             }
+            i++;
         }
-        sacerdote = new Sacerdote(sacerdoteX, sacerdoteY, random.nextInt(3));
-        campos[sacerdoteX][sacerdoteY] = true;
+        if (i == MAZMORRA_ANCHO * MAZMORRA_ALTO) {  // Si no hay sitio para el sacerdote, no se pone
+            sacerdote = null;
+        } else {
+            sacerdote = new Sacerdote(sacerdoteX, sacerdoteY, random.nextInt(3));
+            campos[sacerdoteX][sacerdoteY] = true;
+        }
+    }
+
+    private boolean cerca(int sacerdoteX, int sacerdoteY, Esqueleto vampiro) {
+        return abs(sacerdoteX - vampiro.x) + abs(sacerdoteY - vampiro.y) <= 1;  // Esto devuelve true cuando el sacerdote está en las cuatro casillas adyacentes al vampiro (arriba, abajo, izquierda y derecha)
     }
 
     public void update(float deltaTime) {
@@ -114,7 +125,7 @@ public class Mazmorra {
                 Esqueleto nuevo = monstruos.partes.get(monstruos.partes.size()-1);
                 campos[nuevo.x][nuevo.y] = true;    // Se genera un nuevo esqueleto en el lugar del último así que se vuelve a ocupar ese lugar
                 // campos[alma.x][alma.y] = false;  // El alma no se pone a false porque es el sitio que ocupa ahora el vampiro
-                campos[sacerdote.x][sacerdote.y] = false;
+                if (sacerdote != null) campos[sacerdote.x][sacerdote.y] = false;
 
                 if (monstruos.partes.size() == MAZMORRA_ANCHO * MAZMORRA_ALTO - 1) {    // El menos 1 es para tener en cuenta la existencia de un último sacerdote
                     finalJuego = true;
