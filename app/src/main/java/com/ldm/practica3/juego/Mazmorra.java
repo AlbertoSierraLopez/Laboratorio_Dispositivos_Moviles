@@ -85,15 +85,17 @@ public class Mazmorra {
 
         while (tiempoTick > tick) {
             tiempoTick -= tick;
+
+            // Actualizar la matriz campos tras cada desplazamiento
             Esqueleto ultimo = monstruos.partes.get(monstruos.partes.size()-1);
+            campos[ultimo.x][ultimo.y] = false;     // El último deja libre su casilla
 
             // Avanzar
             monstruos.avance();
 
             // Actualizar la matriz campos tras cada desplazamiento
-            campos[ultimo.x][ultimo.y] = false;
             Esqueleto vampiro = monstruos.partes.get(0);
-            campos[vampiro.x][vampiro.y] = true;
+            campos[vampiro.x][vampiro.y] = true;    // El vampiro ocupa una nueva casilla
 
             // Comprobar si el vampiro se choca con sus esqueletos
             if (monstruos.comprobarChoque()) {
