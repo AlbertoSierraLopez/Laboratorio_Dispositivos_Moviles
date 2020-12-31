@@ -185,15 +185,17 @@ public class PantallaJuego extends Pantalla {
 
         // Dibujar Sacerdote
         Pixmap stainPixmapSacerdote = null;
-        if (sacerdote.tipo== sacerdote.TIPO_1)
-            stainPixmapSacerdote = Assets.sacerdote1;
-        if (sacerdote.tipo == sacerdote.TIPO_2)
-            stainPixmapSacerdote = Assets.sacerdote2;
-        if (sacerdote.tipo == sacerdote.TIPO_3)
-            stainPixmapSacerdote = Assets.sacerdote3;
-        x = sacerdote.x * 32;
-        y = sacerdote.y * 32;
-        g.drawPixmap(stainPixmapSacerdote, x, y);
+        if (sacerdote != null) {    // Solo se dibuja el sacerdote si hay sacerdote
+            if (sacerdote.tipo == sacerdote.TIPO_1)
+                stainPixmapSacerdote = Assets.sacerdote1;
+            if (sacerdote.tipo == sacerdote.TIPO_2)
+                stainPixmapSacerdote = Assets.sacerdote2;
+            if (sacerdote.tipo == sacerdote.TIPO_3)
+                stainPixmapSacerdote = Assets.sacerdote3;
+            x = sacerdote.x * 32;
+            y = sacerdote.y * 32;
+            g.drawPixmap(stainPixmapSacerdote, x, y);
+        }
 
         // Dibujar Séquito de Esqueletos
         int len = monstruos.partes.size();

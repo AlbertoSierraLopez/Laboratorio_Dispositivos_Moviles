@@ -140,9 +140,11 @@ public class Mazmorra {
             }
 
             // Comprobar si el sacerdote acaba con el vampiro
-            if (vampiro.x == sacerdote.x && vampiro.y == sacerdote.y) {
-                finalJuego = true;
-                return;
+            if (sacerdote != null) {    // Pero solo si hay sacerdote
+                if (vampiro.x == sacerdote.x && vampiro.y == sacerdote.y) {
+                    finalJuego = true;
+                    return;
+                }
             }
         }
     }
