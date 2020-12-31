@@ -3,6 +3,7 @@ package com.ldm.practica3.androidimpl;
 import java.util.ArrayList;
 import java.util.List;
 
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 
@@ -59,7 +60,7 @@ public class MultiTouchHandler implements TouchHandler {
                     touchEventsBuffer.add(touchEvent);
 
                     // PARA DEBUG
-                    System.out.println("--> x: " + touchEvent.x + ", y: " + touchEvent.y);
+                    Log.d("Touch", "x: " + touchEvent.x + ", y: " + touchEvent.y);
                     break;
 
                 case MotionEvent.ACTION_UP:

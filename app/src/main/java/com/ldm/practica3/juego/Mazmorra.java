@@ -109,9 +109,12 @@ public class Mazmorra {
                 monstruos.abordaje();
 
                 // Se actualiza la matriz campos
-                campos[ultimo.x][ultimo.y] = true;  // Se genera un nuevo esqueleto en el lugar del último así que se vuelve a ocupar ese lugar
                 campos[alma.x][alma.y] = false;
                 campos[sacerdote.x][sacerdote.y] = false;
+
+                Esqueleto nuevo = monstruos.partes.get(monstruos.partes.size()-1);
+                campos[nuevo.x][nuevo.y] = true;  // Se genera un nuevo esqueleto en el lugar del último así que se vuelve a ocupar ese lugar
+
 
                 if (monstruos.partes.size() == MAZMORRA_ANCHO * MAZMORRA_ALTO) {
                     finalJuego = true;
