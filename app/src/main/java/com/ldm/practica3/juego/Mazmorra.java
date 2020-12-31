@@ -109,12 +109,10 @@ public class Mazmorra {
                 monstruos.abordaje();
 
                 // Se actualiza la matriz campos
-                campos[alma.x][alma.y] = false;
-                campos[sacerdote.x][sacerdote.y] = false;
-
                 Esqueleto nuevo = monstruos.partes.get(monstruos.partes.size()-1);
-                campos[nuevo.x][nuevo.y] = true;  // Se genera un nuevo esqueleto en el lugar del último así que se vuelve a ocupar ese lugar
-
+                campos[nuevo.x][nuevo.y] = true;    // Se genera un nuevo esqueleto en el lugar del último así que se vuelve a ocupar ese lugar
+                // campos[alma.x][alma.y] = false;  // El alma no se pone a false porque es el sitio que ocupa ahora el vampiro
+                if (sacerdote != null) campos[sacerdote.x][sacerdote.y] = false;
 
                 if (monstruos.partes.size() == MAZMORRA_ANCHO * MAZMORRA_ALTO) {
                     finalJuego = true;
