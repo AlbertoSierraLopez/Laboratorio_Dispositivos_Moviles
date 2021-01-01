@@ -126,11 +126,14 @@ public class Mazmorra {
                 campos[nuevo.x][nuevo.y] = true;    // Se genera un nuevo esqueleto en el lugar del último así que se vuelve a ocupar ese lugar
                 // campos[alma.x][alma.y] = false;  // El alma no se pone a false porque es el sitio que ocupa ahora el vampiro
                 if (sacerdote != null) campos[sacerdote.x][sacerdote.y] = false;
-
-                if (monstruos.partes.size() == MAZMORRA_ANCHO * MAZMORRA_ALTO - 1) {    // El menos 1 es para tener en cuenta la existencia de un último sacerdote
+                
+                if (sacerdote == null && monstruos.partes.size() == MAZMORRA_ANCHO * MAZMORRA_ALTO) {               // Si no hay sacerdote, entonces, se termina el juego si se ha ocupado toda la pantalla con esqueletos
                     finalJuego = true;
                     return;
-                } else {
+                } else if (sacerdote != null && monstruos.partes.size() == MAZMORRA_ANCHO * MAZMORRA_ALTO - 1) {    // El menos 1 es para tener en cuenta la existencia de un último sacerdote, casilla imposible de cubrir con un esqueleto
+                    finalJuego = true;
+                    return;
+                } else {                                                                                            // El juego no ha terminado
                     colocarAlmaYSacerdote();
                 }
 
