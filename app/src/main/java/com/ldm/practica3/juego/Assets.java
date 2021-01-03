@@ -12,6 +12,7 @@ public class Assets {
     public static Pixmap ayuda1;
     public static Pixmap ayuda2;
     public static Pixmap ayuda3;
+    public static Pixmap ayuda4;
     public static Pixmap numeros;
     public static Pixmap preparado;
     public static Pixmap menupausa;
@@ -28,6 +29,7 @@ public class Assets {
     public static Pixmap sacerdote3;
     public static Pixmap alma1;
     public static Pixmap alma2;
+    public static Pixmap explosion;
 
     public static Sonido cursor;
     public static Sonido magia;

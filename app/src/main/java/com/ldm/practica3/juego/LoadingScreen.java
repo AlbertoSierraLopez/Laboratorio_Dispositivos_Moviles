@@ -20,6 +20,7 @@ public class LoadingScreen extends Pantalla{
         Assets.ayuda1 = g.newPixmap("ayuda1.png", PixmapFormat.ARGB4444);
         Assets.ayuda2 = g.newPixmap("ayuda2.png", PixmapFormat.ARGB4444);
         Assets.ayuda3 = g.newPixmap("ayuda3.png", PixmapFormat.ARGB4444);
+        Assets.ayuda4 = g.newPixmap("ayuda4.png", PixmapFormat.ARGB4444);
         Assets.numeros = g.newPixmap("numeros.png", PixmapFormat.ARGB4444);
         Assets.preparado = g.newPixmap("preparado.png", PixmapFormat.ARGB4444);
         Assets.menupausa = g.newPixmap("menupausa.png", PixmapFormat.ARGB4444);
@@ -36,6 +37,7 @@ public class LoadingScreen extends Pantalla{
         Assets.sacerdote3 = g.newPixmap("sacerdote3.png", PixmapFormat.ARGB4444);
         Assets.alma1 = g.newPixmap("alma1.png", PixmapFormat.ARGB4444);
         Assets.alma2 = g.newPixmap("alma2.png", PixmapFormat.ARGB4444);
+        Assets.explosion = g.newPixmap("explosion.png", PixmapFormat.ARGB4444);
 
         Assets.cursor = juego.getAudio().nuevoSonido("cursor.ogg");
         Assets.magia = juego.getAudio().nuevoSonido("magia.ogg");

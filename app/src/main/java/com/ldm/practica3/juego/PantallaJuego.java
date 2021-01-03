@@ -81,6 +81,7 @@ public class PantallaJuego extends Pantalla {
         if (mazmorra.finalJuego) {
             if (Configuraciones.sonidoHabilitado)
                 Assets.derrota.play(1);
+            drawWorld(mazmorra);
             estado = EstadoJuego.FinJuego;
         }
         if (antiguaPuntuacion != mazmorra.puntuacion) {
@@ -213,19 +214,27 @@ public class PantallaJuego extends Pantalla {
             g.drawPixmap(stainPixmapEsqueleto, x, y);
         }
 
-        // Dibujar Vampiro
-        Pixmap headPixmap = null;
-        if (monstruos.direccion == Monstruos.ARRIBA)
-            headPixmap = Assets.vampiroarriba;
-        if (monstruos.direccion == Monstruos.IZQUIERDA)
-            headPixmap = Assets.vampiroizquierda;
-        if (monstruos.direccion == Monstruos.ABAJO)
-            headPixmap = Assets.vampiroabajo;
-        if (monstruos.direccion == Monstruos.DERECHA)
-            headPixmap = Assets.vampiroderecha;
-        x = head.x * 32 + 16;
-        y = head.y * 32 + 16;
-        g.drawPixmap(headPixmap, x - headPixmap.getWidth() / 2, y - headPixmap.getHeight() / 2);
+        if (mazmorra.finalJuego) {
+            // Al morir, el vampiro explota
+            Esqueleto vampiro = mazmorra.monstruos.partes.get(0);
+            x = vampiro.x * 32;
+            y = vampiro.y * 32;
+            juego.getGraphics().drawPixmap(Assets.explosion, x, y);
+        } else {
+            // Dibujar Vampiro
+            Pixmap headPixmap = null;
+            if (monstruos.direccion == Monstruos.ARRIBA)
+                headPixmap = Assets.vampiroarriba;
+            if (monstruos.direccion == Monstruos.IZQUIERDA)
+                headPixmap = Assets.vampiroizquierda;
+            if (monstruos.direccion == Monstruos.ABAJO)
+                headPixmap = Assets.vampiroabajo;
+            if (monstruos.direccion == Monstruos.DERECHA)
+                headPixmap = Assets.vampiroderecha;
+            x = head.x * 32 + 16;
+            y = head.y * 32 + 16;
+            g.drawPixmap(headPixmap, x - headPixmap.getWidth() / 2, y - headPixmap.getHeight() / 2);
+        }
     }
 
     private void drawReadyUI() {
