@@ -81,6 +81,7 @@ public class PantallaJuego extends Pantalla {
         if (mazmorra.finalJuego) {
             if (Configuraciones.sonidoHabilitado)
                 Assets.derrota.play(1);
+            // Dibujar el mundo una última vez pero con el vampiro explotando
             drawWorld(mazmorra);
             estado = EstadoJuego.FinJuego;
         }
